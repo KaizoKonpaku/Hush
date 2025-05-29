@@ -121,11 +121,14 @@ open Hush.xcodeproj
 # Build and run (⌘R)
 ```
 
-### Manual Installation
-1. Download the latest release from [GitHub Releases](https://github.com/KaizoKonpaku/Hush/releases)
-2. Drag `Hush.app` to your Applications folder
-3. Launch Hush and grant necessary permissions
-4. Configure your Google Gemini API key in Settings
+### Building and Installing
+1. Open the project in Xcode
+2. Select **Product** → **Archive** from the menu
+3. When the archive process completes, click **Distribute App**, then click on custom.
+4. Select **Copy App** and choose a location to save the app (e.g. Downloads)
+5. Drag the exported `Hush.app` to your Applications folder
+6. Launch Hush from Applications and grant necessary permissions
+7. Configure your Google Gemini API key in Settings
 
 ---
 
