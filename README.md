@@ -9,6 +9,8 @@
 
 > Transform your workflow with intelligent audio transcription, screenshot analysis, and AI-powered text processing. Hush brings cutting-edge AI capabilities directly to your macOS desktop with lightning-fast performance and seamless integration.
 
+![Hush Preview](preview/HushPreview.gif)
+
 ## Key Highlights
 
 - **Lightning Fast**: Real-time audio transcription with < 100ms latency
