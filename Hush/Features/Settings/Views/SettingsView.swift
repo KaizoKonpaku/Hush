@@ -581,7 +581,7 @@ struct SettingsView: View {
                         ShortcutRow(key: Constants.SettingKeys.Shortcuts.capture, title: "Screenshot", shortcut: "⌘H", viewModel: viewModel)
                         ShortcutRow(key: Constants.SettingKeys.Shortcuts.delete, title: "Delete Screenshot", shortcut: "⌘D", viewModel: viewModel)
                         ShortcutRow(key: Constants.SettingKeys.Shortcuts.process, title: "Process", shortcut: "⌘↩", viewModel: viewModel)
-                        ShortcutRow(key: Constants.SettingKeys.Shortcuts.liveMode, title: "Audio Recording", shortcut: "⌘M", viewModel: viewModel)
+                        ShortcutRow(key: Constants.SettingKeys.Shortcuts.liveMode, title: "Audio Recording", shortcut: "⌘L", viewModel: viewModel)
                         ShortcutRow(key: Constants.SettingKeys.Shortcuts.showTranscriptViewer, title: "Toggle Transcript Viewer", shortcut: "⌘⇧L", viewModel: viewModel)
                         ShortcutRow(key: Constants.SettingKeys.Shortcuts.toggleAudioSource, title: "Switch Audio Source", shortcut: "⌘⌃L", viewModel: viewModel)
                         ShortcutRow(key: Constants.SettingKeys.Shortcuts.autoScroll, title: "Toggle Auto-scroll", shortcut: "⌘.", viewModel: viewModel)
@@ -1097,14 +1097,14 @@ struct ShortcutsHelpView: View {
                         ("⌘N", "New Session"),
                         ("⌘T", "Text Mode"),
                         ("⌘H", "Screenshot"),
-                        ("⌘M", "Audio Recording"),
+                        ("⌘L", "Audio Recording"),
                         ("⌘↩", "Process"),
                         ("⌘,", "Settings")
                     ])
                     
                     // Audio & Transcription
                     ShortcutSection(title: "Audio", shortcuts: [
-                        ("⌘M", "Toggle Recording"),
+                        ("⌘L", "Toggle Recording"),
                         ("⌘⇧L", "Transcript Viewer"),
                         ("⌘⌃L", "Switch Audio Source")
                     ])

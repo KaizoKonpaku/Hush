@@ -254,9 +254,9 @@ final class HotKeyManager: ObservableObject {
             }
         }
         
-        // LIVE (⌘M)
+        // LIVE (⌘L)
         if preferences.isShortcutEnabled(Constants.SettingKeys.Shortcuts.liveMode) {
-            liveModeHotKey = HotKey(key: .m, modifiers: [.command])
+            liveModeHotKey = HotKey(key: .l, modifiers: [.command])
             liveModeHotKey?.keyDownHandler = {
                 handler.toggleLive()
             }
@@ -417,14 +417,6 @@ final class HotKeyManager: ObservableObject {
         helpHotKey = HotKey(key: .slash, modifiers: [.command, .shift])
         helpHotKey?.keyDownHandler = {
             handler.showKeyboardShortcutsHelp()
-            }
-        }
-        
-        // Add hotkey for live mode (⌘M)
-        if preferences.isShortcutEnabled(Constants.SettingKeys.Shortcuts.liveMode) {
-            liveModeHotKey = HotKey(key: .m, modifiers: [.command])
-            liveModeHotKey?.keyDownHandler = {
-                handler.toggleLive()
             }
         }
         
