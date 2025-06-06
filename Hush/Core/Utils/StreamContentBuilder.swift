@@ -4,6 +4,8 @@ import Combine
 
 /// Processes streaming content into structured StreamContent
 class StreamContentBuilder {
+    // MARK: - Properties
+    
     /// Raw text buffer containing the current streaming content
     private var buffer: String
     
@@ -16,10 +18,14 @@ class StreamContentBuilder {
         return decoder
     }()
     
+    // MARK: - Initialization
+    
     /// Create a new builder with the provided buffer
     init(buffer: String = "") {
         self.buffer = buffer
     }
+    
+    // MARK: - Public Methods
     
     /// Process raw input into structured content
     func build() -> StreamContent {
@@ -39,6 +45,8 @@ class StreamContentBuilder {
         
         return content
     }
+    
+    // MARK: - Private Methods
     
     /// Parse raw content into basic blocks (text and XML)
     private func parseRawContent() -> [ContentBlock] {
