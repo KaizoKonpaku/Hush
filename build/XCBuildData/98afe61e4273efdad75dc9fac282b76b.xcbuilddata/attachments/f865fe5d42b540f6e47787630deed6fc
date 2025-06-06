@@ -1,0 +1,170 @@
+{
+  "" : {
+    "const-values" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/Hush-master.swiftconstvalues",
+    "dependencies" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/Hush-master.d",
+    "diagnostics" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/Hush-master.dia",
+    "emit-module-dependencies" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/Hush-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/Hush-master-emit-module.dia",
+    "swift-dependencies" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/Hush-master.swiftdeps"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/App/HushApp.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/HushApp.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/HushApp.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/HushApp.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/App/main.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/main.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/main.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/main.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Core/Constants/Constants.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/Constants.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/Constants.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/Constants.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Core/Extensions/NotificationExtension.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/NotificationExtension.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/NotificationExtension.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/NotificationExtension.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Core/Extensions/WindowExtension.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/WindowExtension.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/WindowExtension.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/WindowExtension.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Core/Models/AppState.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/AppState.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/AppState.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/AppState.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Core/Models/ArrowDirection.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/ArrowDirection.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/ArrowDirection.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/ArrowDirection.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Core/Models/StreamContent.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/StreamContent.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/StreamContent.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/StreamContent.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Core/Utils/ScrollViewFinder.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/ScrollViewFinder.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/ScrollViewFinder.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/ScrollViewFinder.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Core/Utils/StreamContentBuilder.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/StreamContentBuilder.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/StreamContentBuilder.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/StreamContentBuilder.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Features/Main/Components/AudioSourceButton.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/AudioSourceButton.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/AudioSourceButton.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/AudioSourceButton.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Features/Main/Components/ResultViews.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/ResultViews.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/ResultViews.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/ResultViews.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Features/Main/Components/ScreenshotGridView.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/ScreenshotGridView.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/ScreenshotGridView.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/ScreenshotGridView.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Features/Main/Components/StreamContentView.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/StreamContentView.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/StreamContentView.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/StreamContentView.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Features/Main/Components/ToolbarComponents.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/ToolbarComponents.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/ToolbarComponents.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/ToolbarComponents.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Features/Main/Components/TranscriptView.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/TranscriptView.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/TranscriptView.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/TranscriptView.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Features/Main/Models/CapturedImage.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/CapturedImage.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/CapturedImage.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/CapturedImage.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Features/Main/ViewModels/MainViewModel.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/MainViewModel.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/MainViewModel.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/MainViewModel.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Features/Main/Views/ContentView.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/ContentView.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Features/Settings/ViewModels/SettingsViewModel.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/SettingsViewModel.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/SettingsViewModel.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/SettingsViewModel.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Features/Settings/Views/SettingsView.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/SettingsView.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/SettingsView.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/SettingsView.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Services/GeminiService.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/GeminiService.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/GeminiService.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/GeminiService.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Services/HotKeyManager.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/HotKeyManager.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/HotKeyManager.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/HotKeyManager.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Services/ProcessTap/AudioProcessController.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/AudioProcessController.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/AudioProcessController.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/AudioProcessController.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Services/ProcessTap/AudioRecordingPermission.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/AudioRecordingPermission.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/AudioRecordingPermission.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/AudioRecordingPermission.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Services/ProcessTap/CoreAudioUtils.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/CoreAudioUtils.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/CoreAudioUtils.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/CoreAudioUtils.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Services/ProcessTap/ProcessTap.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/ProcessTap.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/ProcessTap.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/ProcessTap.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Services/ScreenshotService.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/ScreenshotService.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/ScreenshotService.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/ScreenshotService.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Services/SystemAudioRecorder.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/SystemAudioRecorder.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/SystemAudioRecorder.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/SystemAudioRecorder.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Services/TranscriptionService.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/TranscriptionService.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/TranscriptionService.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/TranscriptionService.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/Hush/Storage/AppPreferences.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/AppPreferences.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/AppPreferences.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/AppPreferences.o"
+  },
+  "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "index-unit-output-path" : "/Hush.build/Release/Hush.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/mrinmoysarkar/Documents/GitHub/Hush/build/Hush.build/Release/Hush.build/Objects-normal/arm64/GeneratedAssetSymbols.o"
+  }
+}

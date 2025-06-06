@@ -130,6 +130,9 @@ enum Constants {
             /// Quit app shortcut key
             static let quitApp = "quitApp"
             
+            /// Help shortcut key
+            static let help = "help"
+            
             /// App activation shortcut key
             static let activation = "activation"
             

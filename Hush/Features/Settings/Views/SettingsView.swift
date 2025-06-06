@@ -578,13 +578,13 @@ struct SettingsView: View {
                     LazyVStack(spacing: 8) {
                         ShortcutRow(key: Constants.SettingKeys.Shortcuts.newSession, title: "New Session", shortcut: "⌘N", viewModel: viewModel)
                         ShortcutRow(key: Constants.SettingKeys.Shortcuts.textMode, title: "Text Mode", shortcut: "⌘T", viewModel: viewModel)
-                        ShortcutRow(key: Constants.SettingKeys.Shortcuts.capture, title: "Screenshot", shortcut: "⌘C", viewModel: viewModel)
+                        ShortcutRow(key: Constants.SettingKeys.Shortcuts.capture, title: "Screenshot", shortcut: "⌘H", viewModel: viewModel)
                         ShortcutRow(key: Constants.SettingKeys.Shortcuts.delete, title: "Delete Screenshot", shortcut: "⌘D", viewModel: viewModel)
                         ShortcutRow(key: Constants.SettingKeys.Shortcuts.process, title: "Process", shortcut: "⌘↩", viewModel: viewModel)
-                        ShortcutRow(key: Constants.SettingKeys.Shortcuts.liveMode, title: "Audio Recording", shortcut: "⌘L", viewModel: viewModel)
+                        ShortcutRow(key: Constants.SettingKeys.Shortcuts.liveMode, title: "Audio Recording", shortcut: "⌘M", viewModel: viewModel)
                         ShortcutRow(key: Constants.SettingKeys.Shortcuts.showTranscriptViewer, title: "Toggle Transcript Viewer", shortcut: "⌘⇧L", viewModel: viewModel)
                         ShortcutRow(key: Constants.SettingKeys.Shortcuts.toggleAudioSource, title: "Switch Audio Source", shortcut: "⌘⌃L", viewModel: viewModel)
-                        ShortcutRow(key: Constants.SettingKeys.Shortcuts.autoScroll, title: "Toggle Auto-scroll", shortcut: "⌘A", viewModel: viewModel)
+                        ShortcutRow(key: Constants.SettingKeys.Shortcuts.autoScroll, title: "Toggle Auto-scroll", shortcut: "⌘.", viewModel: viewModel)
                         ShortcutRow(key: Constants.SettingKeys.Shortcuts.scrollUp, title: "Scroll Up", shortcut: "⌘↑", viewModel: viewModel)
                         ShortcutRow(key: Constants.SettingKeys.Shortcuts.scrollDown, title: "Scroll Down", shortcut: "⌘↓", viewModel: viewModel)
                         ShortcutRow(key: Constants.SettingKeys.Shortcuts.scrollSpeedUp, title: "Increase Scroll Speed", shortcut: "⌘⇧+", viewModel: viewModel)
@@ -593,7 +593,7 @@ struct SettingsView: View {
                         ShortcutRow(key: Constants.SettingKeys.Shortcuts.copyResults, title: "Copy Results", shortcut: "⌘⇧C", viewModel: viewModel)
                         ShortcutRow(key: Constants.SettingKeys.Shortcuts.toggleOpacity, title: "Toggle Opacity", shortcut: "⌘O", viewModel: viewModel)
                         ShortcutRow(key: Constants.SettingKeys.Shortcuts.resetPosition, title: "Reset Position", shortcut: "⌘R", viewModel: viewModel)
-                        ShortcutRow(key: Constants.SettingKeys.Shortcuts.hideApp, title: "Show/Hide App", shortcut: "⌘H", viewModel: viewModel)
+                        ShortcutRow(key: Constants.SettingKeys.Shortcuts.hideApp, title: "Show/Hide App", shortcut: "⌘K", viewModel: viewModel)
                         ShortcutRow(key: Constants.SettingKeys.Shortcuts.quitApp, title: "Quit App", shortcut: "⌘Q", viewModel: viewModel)
                     }
                 }
@@ -1096,15 +1096,15 @@ struct ShortcutsHelpView: View {
                     ShortcutSection(title: "Essential", shortcuts: [
                         ("⌘N", "New Session"),
                         ("⌘T", "Text Mode"),
-                        ("⌘C", "Screenshot"),
-                        ("⌘L", "Audio Recording"),
+                        ("⌘H", "Screenshot"),
+                        ("⌘M", "Audio Recording"),
                         ("⌘↩", "Process"),
                         ("⌘,", "Settings")
                     ])
                     
                     // Audio & Transcription
                     ShortcutSection(title: "Audio", shortcuts: [
-                        ("⌘L", "Toggle Recording"),
+                        ("⌘M", "Toggle Recording"),
                         ("⌘⇧L", "Transcript Viewer"),
                         ("⌘⌃L", "Switch Audio Source")
                     ])

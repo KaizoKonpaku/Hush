@@ -1,0 +1,6 @@
+Target dependency graph (3 targets)
+Target 'Hush' in project 'Hush'
+➜ Explicit dependency on target 'HotKey' in project 'HotKey'
+Target 'HotKey' in project 'HotKey'
+➜ Explicit dependency on target 'HotKey' in project 'HotKey'
+Target 'HotKey' in project 'HotKey' (no dependencies)

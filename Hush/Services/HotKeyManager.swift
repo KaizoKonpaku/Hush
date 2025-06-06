@@ -225,9 +225,9 @@ final class HotKeyManager: ObservableObject {
             }
         }
         
-        // CAPTURE/STOP (⌘C)
+        // CAPTURE/STOP (⌘H)
         if preferences.isShortcutEnabled(Constants.SettingKeys.Shortcuts.capture) {
-        captureHotKey = HotKey(key: .c, modifiers: [.command])
+        captureHotKey = HotKey(key: .h, modifiers: [.command])
         captureHotKey?.keyDownHandler = {
             handler.captureScreenshot()
             }
@@ -254,9 +254,9 @@ final class HotKeyManager: ObservableObject {
             }
         }
         
-        // LIVE (⌘L)
+        // LIVE (⌘M)
         if preferences.isShortcutEnabled(Constants.SettingKeys.Shortcuts.liveMode) {
-            liveModeHotKey = HotKey(key: .l, modifiers: [.command])
+            liveModeHotKey = HotKey(key: .m, modifiers: [.command])
             liveModeHotKey?.keyDownHandler = {
                 handler.toggleLive()
             }
@@ -298,9 +298,9 @@ final class HotKeyManager: ObservableObject {
     /// Sets up scroll-related hotkeys
     /// - Parameter handler: The action handler
     private func setupScrollHotKeys(handler: HotKeyActionHandler) {
-        // Auto-scroll toggle (⌘A)
+        // Auto-scroll toggle (⌘.)
         if preferences.isShortcutEnabled(Constants.SettingKeys.Shortcuts.autoScroll) {
-        autoScrollHotKey = HotKey(key: .a, modifiers: [.command])
+        autoScrollHotKey = HotKey(key: .period, modifiers: [.command])
         autoScrollHotKey?.keyDownHandler = {
             handler.toggleAutoScroll()
             }
@@ -396,15 +396,15 @@ final class HotKeyManager: ObservableObject {
     /// Sets up app management hotkeys
     /// - Parameter handler: The action handler
     private func setupAppManagementHotKeys(handler: HotKeyActionHandler) {
-        // Toggle app visibility (⌘H)
+        // TOGGLE VISIBILITY (⌘K)
         if preferences.isShortcutEnabled(Constants.SettingKeys.Shortcuts.hideApp) {
-        toggleVisibilityHotKey = HotKey(key: .h, modifiers: [.command])
-            toggleVisibilityHotKey?.keyDownHandler = { [weak self] in
-                self?.toggleAppVisibility()
+        toggleVisibilityHotKey = HotKey(key: .k, modifiers: [.command])
+        toggleVisibilityHotKey?.keyDownHandler = {
+            self.toggleAppVisibility()
             }
-        } 
+        }
         
-        // Quit app (⌘Q)
+        // QUIT (⌘Q)
         if preferences.isShortcutEnabled(Constants.SettingKeys.Shortcuts.quitApp) {
         quitAppHotKey = HotKey(key: .q, modifiers: [.command])
         quitAppHotKey?.keyDownHandler = {
@@ -412,10 +412,36 @@ final class HotKeyManager: ObservableObject {
             }
         }
         
-        // Help (⌘?)
+        // HELP (⌘?)
+        if preferences.isShortcutEnabled(Constants.SettingKeys.Shortcuts.help) {
         helpHotKey = HotKey(key: .slash, modifiers: [.command, .shift])
         helpHotKey?.keyDownHandler = {
             handler.showKeyboardShortcutsHelp()
+            }
+        }
+        
+        // Add hotkey for live mode (⌘M)
+        if preferences.isShortcutEnabled(Constants.SettingKeys.Shortcuts.liveMode) {
+            liveModeHotKey = HotKey(key: .m, modifiers: [.command])
+            liveModeHotKey?.keyDownHandler = {
+                handler.toggleLive()
+            }
+        }
+        
+        // Add hotkey for show transcript viewer (⌘⇧L)
+        if preferences.isShortcutEnabled(Constants.SettingKeys.Shortcuts.showTranscriptViewer) {
+            showTranscriptViewerHotKey = HotKey(key: .l, modifiers: [.command, .shift])
+            showTranscriptViewerHotKey?.keyDownHandler = {
+                handler.toggleTranscriptViewer()
+            }
+        }
+        
+        // Add hotkey for toggling audio source (⌘^L)
+        if preferences.isShortcutEnabled(Constants.SettingKeys.Shortcuts.toggleAudioSource) {
+            toggleAudioSourceHotKey = HotKey(key: .l, modifiers: [.command, .control])
+            toggleAudioSourceHotKey?.keyDownHandler = {
+                handler.toggleAudioSource()
+            }
         }
     }
     
