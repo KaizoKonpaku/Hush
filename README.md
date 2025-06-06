@@ -9,7 +9,7 @@
 
 > Transform your workflow with intelligent audio transcription, screenshot analysis, and AI-powered text processing. Hush brings cutting-edge AI capabilities directly to your macOS desktop with lightning-fast performance and seamless integration.
 
-![Hush Preview](preview/HushPreview.gif)
+![Hush Preview](Preview/HushPreview.gif)
 
 ## Key Highlights
 
@@ -112,6 +112,15 @@ Hush is a powerful macOS application that supercharges your productivity by prov
 - **Internet**: Required for AI processing
 
 ### Quick Install
+1. Visit [Hush Releases](https://github.com/KaizoKonpaku/Hush/releases)
+2. Download the latest `Hush.zip` file
+3. Unzip and move `Hush.app` to your Applications folder
+4. Launch Hush and grant necessary permissions
+5. Configure your Google Gemini API key in Settings
+
+### Development and Building from Source
+If you want to build Hush from source:
+
 ```bash
 # Clone the repository
 git clone https://github.com/KaizoKonpaku/Hush.git
@@ -123,7 +132,7 @@ open Hush.xcodeproj
 # Build and run (⌘R)
 ```
 
-### Building and Installing
+#### Building for Distribution
 1. Open the project in Xcode
 2. Select **Product** → **Archive** from the menu
 3. When the archive process completes, click **Distribute App**, then click on custom.
@@ -423,11 +432,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 If you find Hush useful, please consider:
 
 - **Star this repository**
-- **Follow me on X**: [@KaizooKonpaku](https://x.com/KaizooKonpaku)
+- **Follow me on X**: [@KaizoKonpakuu](https://x.com/KaizoKonpakuu)
 - **Share with others**: Spread the word about Hush
 - **Report bugs**: Help us improve the app
 - **Suggest features**: Share your ideas for new capabilities
 
 ---
 
-[GitHub](https://github.com/KaizoKonpaku/Hush) • [X](https://x.com/KaizooKonpaku) • [Issues](https://github.com/KaizoKonpaku/Hush/issues) • [Discussions](https://github.com/KaizoKonpaku/Hush/discussions)
+[GitHub](https://github.com/KaizoKonpaku/Hush) • [X](https://x.com/KaizoKonpakuu) • [Issues](https://github.com/KaizoKonpaku/Hush/issues) • [Discussions](https://github.com/KaizoKonpaku/Hush/discussions)

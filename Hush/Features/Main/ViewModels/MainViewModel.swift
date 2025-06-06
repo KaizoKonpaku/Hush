@@ -819,7 +819,7 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
             }
             
             // Disable mouse events as we're going back to initial state
-            window.ignoresMouseEvents = true
+            window.ignoresMouseEvents = !appState.isChatActive
             
             // Then animate the window resize
             NSAnimationContext.runAnimationGroup { context in
