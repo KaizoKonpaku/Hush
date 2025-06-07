@@ -5,8 +5,20 @@ let kAppSubsystem = "com.kaizokonpaku.Hush"
 
 /// Custom window that prevents it from becoming key or main window
 class NonActivatingWindow: NSWindow {
-    override var canBecomeKey: Bool { false }
+    override var canBecomeKey: Bool { 
+        // Allow window to become key when chat is active
+        AppState.shared.isChatActive 
+    }
     override var canBecomeMain: Bool { false }
+    
+    override func makeKeyAndOrderFront(_ sender: Any?) {
+        // Only allow becoming key when chat is active
+        if AppState.shared.isChatActive {
+            super.makeKeyAndOrderFront(sender)
+        } else {
+            orderFront(sender)
+        }
+    }
 }
 
 // MARK: - App Delegate
@@ -21,7 +33,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// Called when the application finishes launching
     func applicationDidFinishLaunching(_ notification: Notification) {
-        // Set activation policy to prohibited - prevents Space switching
+        // Start with prohibited policy - will switch to accessory when chat is active
         NSApp.setActivationPolicy(.prohibited)
         
         createCustomWindow()
@@ -47,7 +59,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         window.isReleasedWhenClosed = false
         
         // Add all focus-prevention settings
-        window.ignoresMouseEvents = true // Always ignore mouse events
+        window.ignoresMouseEvents = !appState.isChatActive // Set based on chat state
         window.canHide = false
         window.hidesOnDeactivate = false
         window.isMovableByWindowBackground = false
