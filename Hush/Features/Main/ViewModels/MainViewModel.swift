@@ -909,29 +909,20 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
     
     /// Toggles the live mode
     func toggleLive() {
-        // Based on the current audio source, toggle appropriate recording
-        switch appState.audioSource {
-        case .microphone:
-            // Toggle microphone recording (existing live mode)
-        appState.isLiveMode.toggle()
-        
+        // Force system audio recording when Cmd+L is pressed
+        // Stop microphone recording if it's active
         if appState.isLiveMode {
-            // If previous transcription exists, reset it when starting a new session
-            if !appState.transcriptText.isEmpty && !appState.isTranscribing {
-                appState.transcriptText = ""
-            }
-            
-            // Start recording and transcription
-            startTranscription()
-        } else {
-            // Stop recording and transcription
             stopTranscription()
-            }
-            
-        case .systemAudio:
-            // Toggle system audio recording
-            SystemAudioRecorder.shared.toggleRecording()
+            appState.isLiveMode = false // Ensure microphone live mode is off
         }
+        
+        // Always toggle system audio recording
+        SystemAudioRecorder.shared.toggleRecording()
+        
+        // Optionally, ensure the appState reflects system audio as the source
+        // if SystemAudioRecorder.shared.isRecording && appState.audioSource != .systemAudio {
+        //     appState.audioSource = .systemAudio
+        // }
     }
     
     /// Toggles the transcript viewer visibility
