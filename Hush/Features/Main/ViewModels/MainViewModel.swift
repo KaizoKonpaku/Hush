@@ -162,7 +162,7 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
         appState.isChatActive.toggle()
         
         // Mouse events are now handled in the AppState didSet observer for isChatActive
-            }
+    }
     
     /// Toggles recording state
     func toggleRecording() {
@@ -213,8 +213,17 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
         // Extract NSImages from CapturedImage objects
         let images = appState.capturedImages.map { $0.image }
         
+        // Construct conversation history preamble
+        var historyPreamble = ""
+        if !appState.conversationHistory.isEmpty {
+            historyPreamble = appState.conversationHistory.joined(separator: "\n\n") + "\n\n---\n\n"
+        }
+
         // Determine the prompt to use for the API request
         var prompt = "These are screenshots from my screen. Please analyze what you see and describe the content in detail. and provide implementation to the problem in the language of the code specified in the screenshot."
+
+        // Prepend history to the main prompt
+        prompt = historyPreamble + prompt
         
         // Check for custom prompt
         if let selectedPrompt = AppPreferences.shared.selectedPrompt {
@@ -281,8 +290,33 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
                     if content.finished {
                         self.appState.isProcessing = false
                         
-                        // Clear inputs after processing
+                        // Save interaction to history before clearing inputs
                         if self.appState.isChatActive {
+                            let userQuery = self.appState.chatText // Capture before clearing
+                            // Prefer structured content for history if available, otherwise use resultContent
+                            let assistantResponse = self.structuredContent.items.compactMap { item -> String? in
+    switch item.value {
+    case .markdown(let entry):
+        return entry.content
+    // Optionally, handle tables as markdown text
+    case .markdownTable(let table):
+        let header = table.headers.joined(separator: " | ")
+        let rows = table.rows.map { $0.joined(separator: " | ") }.joined(separator: "\n")
+        return "| " + header + " |\n" + rows
+    default:
+        return nil
+    }
+}.joined(separator: "\n\n")
+                            
+                            if !userQuery.isEmpty && !assistantResponse.isEmpty {
+                                // Limit history size to, for example, the last 5 interactions
+                                if self.appState.conversationHistory.count >= 5 {
+                                    self.appState.conversationHistory.removeFirst()
+                                }
+                                self.appState.conversationHistory.append("User: \(userQuery)\n\nAssistant: \(assistantResponse)")
+                            }
+                            
+                            // Clear inputs after processing
                             self.appState.chatText = ""
                         }
                     }
@@ -405,6 +439,12 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
         if let selectedPrompt = AppPreferences.shared.selectedPrompt {
             finalPrompt = "\(selectedPrompt.prompt)\n\nUser input: \(text)"
         }
+
+        // Prepend conversation history if available
+        if !appState.conversationHistory.isEmpty {
+            let history = appState.conversationHistory.joined(separator: "\n\n")
+            finalPrompt = "\(history)\n\n---\n\n\(finalPrompt)"
+        }
         
         // Add memory context if available
         let enabledMemories = AppPreferences.shared.enabledMemories
@@ -454,7 +494,32 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
                     // Update processing state when finished
                     if content.finished {
                     self.appState.isProcessing = false
-                    
+
+                        // Save interaction to history before clearing inputs
+                            let assistantResponse = self.structuredContent.items.compactMap { item -> String? in
+                                switch item.value {
+                                case .markdown(let entry):
+                                    return entry.content
+                                case .markdownTable(let table):
+                                    let header = table.headers.joined(separator: " | ")
+                                    let rows = table.rows.map { $0.joined(separator: " | ") }.joined(separator: "\n")
+                                    return "| " + header + " |\n" + rows
+                                default:
+                                    return nil
+                                }
+                            }.joined(separator: "\n\n")
+
+                            if !assistantResponse.isEmpty {
+                                let interaction = "User: \(text)\n\nAssistant: \(assistantResponse)"
+                                self.appState.conversationHistory.append(interaction)
+
+                                // Limit conversation history to the last 5 entries
+                                let maxHistoryEntries = 5
+                                if self.appState.conversationHistory.count > maxHistoryEntries {
+                                    self.appState.conversationHistory = Array(self.appState.conversationHistory.suffix(maxHistoryEntries))
+                                }
+                            }
+                        
                         // Clear the input field when complete, but only if from chat
                         if !isFromTranscript {
                     self.appState.chatText = ""
@@ -907,22 +972,40 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
         transcriptionService.stopRecording()
     }
     
-    /// Toggles the live mode
+    /// Toggles the live mode for the current audio source
     func toggleLive() {
-        // Force system audio recording when Cmd+L is pressed
-        // Stop microphone recording if it's active
-        if appState.isLiveMode {
-            stopTranscription()
-            appState.isLiveMode = false // Ensure microphone live mode is off
+        // Handle based on current audio source
+        switch appState.audioSource {
+        case .microphone:
+            // Toggle microphone recording
+            if appState.isLiveMode {
+                stopTranscription()
+                appState.isLiveMode = false
+            } else {
+                startTranscription()
+                appState.isLiveMode = true
+                
+                // Ensure system audio is not recording
+                if SystemAudioRecorder.shared.isRecording {
+                    SystemAudioRecorder.shared.stopRecording()
+                }
+            }
+            
+        case .systemAudio:
+            // Toggle system audio recording
+            if SystemAudioRecorder.shared.isRecording {
+                SystemAudioRecorder.shared.stopRecording()
+            } else {
+                // Ensure microphone is not recording
+                if appState.isLiveMode {
+                    stopTranscription()
+                    appState.isLiveMode = false
+                }
+                
+                // Start system audio recording
+                SystemAudioRecorder.shared.startRecording()
+            }
         }
-        
-        // Always toggle system audio recording
-        SystemAudioRecorder.shared.toggleRecording()
-        
-        // Optionally, ensure the appState reflects system audio as the source
-        // if SystemAudioRecorder.shared.isRecording && appState.audioSource != .systemAudio {
-        //     appState.audioSource = .systemAudio
-        // }
     }
     
     /// Toggles the transcript viewer visibility
