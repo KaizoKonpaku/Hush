@@ -738,7 +738,7 @@ struct SettingsView: View {
                             Link("GitHub", destination: URL(string: "https://github.com/KaizoKonpaku/Hush")!)
                                 .font(.caption)
             
-                            Link("X", destination: URL(string: "https://x.com/KaizooKonpaku")!)
+                            Link("X", destination: URL(string: "https://x.com/KaizoKonpakuu")!)
                 .font(.caption)
         }
                         .foregroundColor(.blue)

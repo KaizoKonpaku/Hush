@@ -60,9 +60,19 @@ final class AppState: ObservableObject {
     /// Whether text input mode is active
     @Published var isChatActive: Bool = false {
         didSet {
-            // Always ignore mouse events for all windows
+            // Only ignore mouse events when chat is not active
             for window in NSApp.windows where window.isVisible {
-                window.ignoresMouseEvents = true
+                window.ignoresMouseEvents = !isChatActive
+                
+                if isChatActive {
+                    // Switch to accessory mode when chat is active
+                    NSApp.setActivationPolicy(.accessory)
+                    // Make window key and order front to get focus
+                    window.makeKeyAndOrderFront(nil)
+                } else {
+                    // Switch back to prohibited mode when chat is inactive
+                    NSApp.setActivationPolicy(.prohibited)
+                }
             }
         }
     }
@@ -168,7 +178,7 @@ final class AppState: ObservableObject {
         transcriptText = ""
         showTranscript = false
         
-        // Always ignore mouse events for all windows
+        // Ignore mouse events for all windows since isChatActive is false
         for window in NSApp.windows where window.isVisible {
             window.ignoresMouseEvents = true
         }
