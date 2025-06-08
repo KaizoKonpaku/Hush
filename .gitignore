@@ -1,3 +1,6 @@
 # Xcode
 *.xcuserstate
-xcuserdata/ 
+xcuserdata/
+
+# Documentation
+CHANGELOG.md 
