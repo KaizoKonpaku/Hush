@@ -121,6 +121,9 @@ final class AppState: ObservableObject {
     /// Current content in the results panel
     @Published var resultContent: String = ""
     
+    /// History of conversation for context
+    @Published var conversationHistory: [String] = []
+    
     // MARK: - Private Properties
     
     /// Set of cancellables for managing subscriptions
@@ -177,6 +180,7 @@ final class AppState: ObservableObject {
         isTranscribing = false
         transcriptText = ""
         showTranscript = false
+        conversationHistory.removeAll()
         
         // Ignore mouse events for all windows since isChatActive is false
         for window in NSApp.windows where window.isVisible {
@@ -282,4 +286,4 @@ final class AppState: ObservableObject {
             selectScreenshot(at: capturedImages.count - 1)
         }
     }
-} 
+}
