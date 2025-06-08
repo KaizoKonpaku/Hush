@@ -1,0 +1,31 @@
+# Xcode
+# User-specific Xcode files
+*.xcuserstate
+xcuserdata/
+*.xcodeproj/**/xcuserdata/
+*.xcodeproj/**/project.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcshareddata/
+*.xcodeproj/project.xcworkspace/xcuserdata/*.xcuserstate
+Hush.xcodeproj/project.xcworkspace/xcuserdata/kon.xcuserdatad/UserInterfaceState.xcuserstate
+Hush.xcodeproj/project.xcworkspace/xcuserdata/mrinmoysarkar.xcuserdatad/UserInterfaceState.xcuserstate
+
+# Build
+build/
+DerivedData/
+
+# IDE
+.idea/
+*.iml
+
+# Documentation
+CHANGELOG.md
+
+# OS generated
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

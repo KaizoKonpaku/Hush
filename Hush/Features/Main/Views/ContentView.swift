@@ -373,8 +373,8 @@ extension View {
             window.animator().setFrame(newFrame, display: true)
         }
         
-        // Always ignore mouse events
-        window.ignoresMouseEvents = true
+        // Set mouse event handling based on chat state
+        window.ignoresMouseEvents = !isChatActive
     }
 }
 
