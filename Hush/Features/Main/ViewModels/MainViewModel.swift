@@ -972,39 +972,30 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
         transcriptionService.stopRecording()
     }
     
-    /// Toggles the live mode for the current audio source
+    /// Toggles the live mode
     func toggleLive() {
-        // Handle based on current audio source
+        // Based on the current audio source, toggle appropriate recording
         switch appState.audioSource {
         case .microphone:
-            // Toggle microphone recording
+            // Toggle microphone recording (existing live mode)
+            appState.isLiveMode.toggle()
+            
             if appState.isLiveMode {
-                stopTranscription()
-                appState.isLiveMode = false
-            } else {
-                startTranscription()
-                appState.isLiveMode = true
-                
-                // Ensure system audio is not recording
-                if SystemAudioRecorder.shared.isRecording {
-                    SystemAudioRecorder.shared.stopRecording()
+                // If previous transcription exists, reset it when starting a new session
+                if !appState.transcriptText.isEmpty && !appState.isTranscribing {
+                    appState.transcriptText = ""
                 }
+                
+                // Start recording and transcription
+                startTranscription()
+            } else {
+                // Stop recording and transcription
+                stopTranscription()
             }
             
         case .systemAudio:
             // Toggle system audio recording
-            if SystemAudioRecorder.shared.isRecording {
-                SystemAudioRecorder.shared.stopRecording()
-            } else {
-                // Ensure microphone is not recording
-                if appState.isLiveMode {
-                    stopTranscription()
-                    appState.isLiveMode = false
-                }
-                
-                // Start system audio recording
-                SystemAudioRecorder.shared.startRecording()
-            }
+            SystemAudioRecorder.shared.toggleRecording()
         }
     }
     
