@@ -88,8 +88,11 @@ struct MarkdownEntryView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            // Use built-in Text for now (in a real app, use a proper Markdown renderer)
-            Text(expanded ? entry.content : (entry.collapsed ?? entry.content))
+            // Process the content to handle code blocks
+            let processedContent = processCodeBlocks(expanded ? entry.content : (entry.collapsed ?? entry.content))
+            
+            // Use SwiftUI's built-in markdown support with processed content
+            Text(LocalizedStringKey(processedContent))
                 .textSelection(.enabled)
             
             // Show expand/collapse button if collapsible
@@ -103,6 +106,40 @@ struct MarkdownEntryView: View {
                 .foregroundColor(.blue)
             }
         }
+    }
+    
+    /// Process code blocks to ensure proper formatting
+    private func processCodeBlocks(_ content: String) -> String {
+        var result = content
+        
+        // Pattern to match code blocks (```language\ncode\n```)
+        let codeBlockPattern = "```(\\w*)\\n([\\s\\S]*?)```"
+        
+        if let regex = try? NSRegularExpression(pattern: codeBlockPattern) {
+            let range = NSRange(result.startIndex..., in: result)
+            let matches = regex.matches(in: result, range: range)
+            
+            // Process matches in reverse to maintain indices
+            for match in matches.reversed() {
+                if let codeBlockRange = Range(match.range, in: result),
+                   let _ = Range(match.range(at: 1), in: result),
+                   let codeRange = Range(match.range(at: 2), in: result) {
+                    
+                    let code = String(result[codeRange])
+                    
+                    // Add proper line breaks and formatting
+                    let formattedCode = code
+                        .components(separatedBy: .newlines)
+                        .map { "    " + $0 } // Add 4 spaces for indentation
+                        .joined(separator: "\n")
+                    
+                    // Replace the code block with formatted version
+                    result.replaceSubrange(codeBlockRange, with: "\n\n\(formattedCode)\n\n")
+                }
+            }
+        }
+        
+        return result
     }
 }
 
@@ -148,7 +185,7 @@ struct TableCell: View {
     let isHeader: Bool
     
     var body: some View {
-        Text(text)
+        Text(LocalizedStringKey(text))
             .font(isHeader ? .headline : .body)
             .fontWeight(isHeader ? .bold : .regular)
             .padding(8)

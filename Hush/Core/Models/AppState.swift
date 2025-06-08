@@ -60,9 +60,19 @@ final class AppState: ObservableObject {
     /// Whether text input mode is active
     @Published var isChatActive: Bool = false {
         didSet {
-            // Always ignore mouse events for all windows
+            // Only ignore mouse events when chat is not active
             for window in NSApp.windows where window.isVisible {
-                window.ignoresMouseEvents = true
+                window.ignoresMouseEvents = !isChatActive
+                
+                if isChatActive {
+                    // Switch to accessory mode when chat is active
+                    NSApp.setActivationPolicy(.accessory)
+                    // Make window key and order front to get focus
+                    window.makeKeyAndOrderFront(nil)
+                } else {
+                    // Switch back to prohibited mode when chat is inactive
+                    NSApp.setActivationPolicy(.prohibited)
+                }
             }
         }
     }
@@ -110,6 +120,9 @@ final class AppState: ObservableObject {
     
     /// Current content in the results panel
     @Published var resultContent: String = ""
+    
+    /// History of conversation for context
+    @Published var conversationHistory: [String] = []
     
     // MARK: - Private Properties
     
@@ -167,8 +180,9 @@ final class AppState: ObservableObject {
         isTranscribing = false
         transcriptText = ""
         showTranscript = false
+        conversationHistory.removeAll()
         
-        // Always ignore mouse events for all windows
+        // Ignore mouse events for all windows since isChatActive is false
         for window in NSApp.windows where window.isVisible {
             window.ignoresMouseEvents = true
         }
@@ -272,4 +286,4 @@ final class AppState: ObservableObject {
             selectScreenshot(at: capturedImages.count - 1)
         }
     }
-} 
+}
