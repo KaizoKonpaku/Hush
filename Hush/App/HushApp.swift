@@ -31,6 +31,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// Shared app state
     private var appState = AppState.shared
     
+    /// Chat session service
+    private let chatSessionService = ChatSessionService.shared
+    
     /// Called when the application finishes launching
     func applicationDidFinishLaunching(_ notification: Notification) {
         // Start with prohibited policy - will switch to accessory when chat is active
@@ -38,6 +41,72 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         createCustomWindow()
         AppInitializer.initializeApp(window: window)
+        
+        // Initialize chat session if chat is active
+        if appState.isChatActive {
+            print("🚀 App launching with active chat - starting session")
+            chatSessionService.startNewSession()
+        }
+        
+        // Set up additional observers for app lifecycle
+        setupAppLifecycleObservers()
+    }
+    
+    /// Called when the application is about to terminate
+    func applicationWillTerminate(_ notification: Notification) {
+        // Save any active chat session
+        print("👋 App terminating - saving chat session")
+        chatSessionService.closeCurrentSession()
+    }
+    
+    /// Called when the application becomes active (foreground)
+    func applicationDidBecomeActive(_ notification: Notification) {
+        print("👁️ App became active")
+        
+        // Check if we need a new chat session when returning to foreground
+        if appState.isChatActive && chatSessionService.currentSession == nil {
+            print("🔄 Resuming chat session")
+            chatSessionService.startNewSession()
+        }
+    }
+    
+    /// Called when the application resigns active state (background)
+    func applicationWillResignActive(_ notification: Notification) {
+        print("🔽 App resigning active - saving chat session")
+        chatSessionService.saveCurrentSession()
+    }
+    
+    /// Set up observers for app lifecycle events
+    private func setupAppLifecycleObservers() {
+        // Register for sleep/wake notifications
+        NSWorkspace.shared.notificationCenter.addObserver(
+            self,
+            selector: #selector(systemWillSleep),
+            name: NSWorkspace.willSleepNotification,
+            object: nil
+        )
+        
+        NSWorkspace.shared.notificationCenter.addObserver(
+            self,
+            selector: #selector(systemDidWake),
+            name: NSWorkspace.didWakeNotification,
+            object: nil
+        )
+    }
+    
+    /// Called when system is about to sleep
+    @objc private func systemWillSleep() {
+        print("💤 System going to sleep - saving chat session")
+        chatSessionService.saveCurrentSession()
+    }
+    
+    /// Called when system wakes from sleep
+    @objc private func systemDidWake() {
+        print("⏰ System woke from sleep")
+        // Check if we need to restore chat session
+        if appState.isChatActive && chatSessionService.currentSession == nil {
+            chatSessionService.startNewSession()
+        }
     }
     
     /// Creates the custom floating window

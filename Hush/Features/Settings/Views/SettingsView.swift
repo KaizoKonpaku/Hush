@@ -288,6 +288,36 @@ struct SettingsView: View {
                         }
                     }
                 }
+                
+                // Chat History Section
+                SettingsSection(title: "Chat History") {
+                    VStack(spacing: 12) {
+                        SettingsRow(
+                            title: "Save chats locally",
+                            description: "Automatically save chat sessions to your local storage"
+                        ) {
+                            Toggle("", isOn: $viewModel.saveChatsLocally)
+                                .toggleStyle(.switch)
+                                .onChange(of: viewModel.saveChatsLocally) {
+                                    viewModel.saveSettings()
+                                }
+                        }
+                        
+                        SettingsRow(
+                            title: "Open Saved Chats",
+                            description: "Open the folder containing your saved chat sessions"
+                        ) {
+                            Button(action: {
+                                let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                                let savedChatsDirectory = documentsDirectory.appendingPathComponent("saved_chats", isDirectory: true)
+                                NSWorkspace.shared.open(savedChatsDirectory)
+                            }) {
+                                Label("Open Folder", systemImage: "folder")
+                            }
+                            .buttonStyle(.bordered)
+                        }
+                    }
+                }
             }
             .padding(24)
             }
@@ -612,47 +642,57 @@ struct SettingsView: View {
         }
     }
     
-    /// About tab
+    /// About tab view
     private var aboutTab: some View {
         ScrollView {
-            VStack(spacing: 32) {
-                // App Header
-                VStack(spacing: 16) {
-                    // App Icon
-                    if let appIcon = NSImage(named: "AppIcon") {
-                        Image(nsImage: appIcon)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 80, height: 80)
-                            .clipShape(RoundedRectangle(cornerRadius: 16))
-                    } else {
-                        // Fallback icon if AppIcon is not found
-                        RoundedRectangle(cornerRadius: 16)
-                            .fill(Color.blue.gradient)
-                            .frame(width: 80, height: 80)
-                            .overlay {
-                                Text("H")
-                                    .font(.system(size: 36, weight: .bold, design: .rounded))
-                                    .foregroundColor(.white)
-                            }
-                    }
+            VStack(alignment: .leading, spacing: 24) {
+                // Header
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("About")
+                        .font(.largeTitle)
+                        .fontWeight(.medium)
                     
-                    VStack(spacing: 4) {
-            Text("Hush")
-                            .font(.system(size: 28, weight: .medium, design: .rounded))
-            
-                        Text("Version 1.1.0")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    Text("AI powered screenshot, audio transcription, and text processing for macOS")
-                        .font(.body)
+                    Text("Information about Hush")
+                        .font(.subheadline)
                         .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
-                        .fixedSize(horizontal: false, vertical: true)
                 }
-                .padding(.top, 16)
+                .padding(.top, 8)
+                
+                // App Info Section
+                SettingsSection(title: "App Information") {
+                    VStack(alignment: .leading, spacing: 12) {
+                        HStack {
+                            Text("Version")
+                                .foregroundColor(.secondary)
+                            Spacer()
+                            Text(AppInfo.shared.version)
+                        }
+                        
+                        HStack {
+                            Text("Build")
+                                .foregroundColor(.secondary)
+                            Spacer()
+                            Text(AppInfo.shared.build)
+                                .onAppear {
+                                    print("Displaying build number: \(AppInfo.shared.build)")
+                                }
+                        }
+                        
+                        HStack {
+                            Text("Bundle ID")
+                                .foregroundColor(.secondary)
+                            Spacer()
+                            Text(AppInfo.shared.bundleIdentifier)
+                        }
+                        
+                        HStack {
+                            Text("Copyright")
+                                .foregroundColor(.secondary)
+                            Spacer()
+                            Text(AppInfo.shared.copyright)
+                        }
+                    }
+                }
                 
                 // Features Section
                 VStack(alignment: .leading, spacing: 20) {

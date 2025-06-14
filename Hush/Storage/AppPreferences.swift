@@ -64,6 +64,7 @@ class AppPreferences {
         static let customPrompts = "customPrompts"
         static let selectedPromptId = "selectedPromptId"
         static let memories = "memories"
+        static let saveChatsLocally = "saveChatsLocally"
         
         // Keychain constants
         static let keychainService = "com.hush.app"
@@ -294,6 +295,12 @@ class AppPreferences {
         }
     }
     
+    /// Get/set whether chats should be saved locally
+    var saveChatsLocally: Bool {
+        get { defaults.bool(forKey: Keys.saveChatsLocally) }
+        set { defaults.set(newValue, forKey: Keys.saveChatsLocally) }
+    }
+    
     /// Reset all preferences to default values
     func resetToDefaults() {
         isAlwaysOnTop = true
@@ -303,6 +310,7 @@ class AppPreferences {
         showTranscriptionViewer = true
         customPrompts = defaultCustomPrompts()
         selectedPromptId = nil
+        saveChatsLocally = true
         // Don't reset API key when resetting other preferences
     }
     
@@ -319,6 +327,11 @@ class AppPreferences {
     /// - Returns: Array of default custom prompts
     private func defaultCustomPrompts() -> [CustomPrompt] {
         return [
+            CustomPrompt(
+                id: "default-interview",
+                name: "Interview Style",
+                prompt: "You are an AI that helps me answer questions like I'm speaking in a real interview. Respond as if I'm the one giving the answer, using clear, confident, and conversational language — no dramatic, overly formal, or show-offy words. Keep it natural and direct, like I'm explaining things in a relaxed, professional way. Only respond to the latest question — don't repeat or summarize older context unless I ask for it."
+            ),
             CustomPrompt(
                 id: "default-analyze",
                 name: "Analyze Content",

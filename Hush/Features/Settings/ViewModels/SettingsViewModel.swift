@@ -26,6 +26,9 @@ final class SettingsViewModel: ObservableObject {
     /// Whether to show API key saved confirmation
     @Published var showApiKeySaved: Bool = false
     
+    /// Whether chats should be saved locally
+    @Published var saveChatsLocally: Bool = true
+    
     /// Selected audio source (0 = microphone, 1 = system audio)
     @Published var audioSource: Int = 0
     
@@ -81,6 +84,7 @@ final class SettingsViewModel: ObservableObject {
         self.startAtLogin = preferences.startAtLogin
         self.shortcutKeys = preferences.enabledShortcuts
         self.showTranscriptionViewer = preferences.showTranscriptionViewer
+        self.saveChatsLocally = preferences.saveChatsLocally
         
         // Load API key if available
         if let apiKey = preferences.geminiApiKey {
@@ -158,6 +162,7 @@ final class SettingsViewModel: ObservableObject {
         preferences.audioSource = audioSource
         preferences.customPrompts = customPrompts
         preferences.selectedPromptId = selectedPromptId
+        preferences.saveChatsLocally = saveChatsLocally
     }
     
     /// Reset all settings to default values

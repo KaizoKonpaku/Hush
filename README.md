@@ -77,6 +77,10 @@ Hush is a powerful macOS application that supercharges your productivity by prov
 - **Customizable interface** with multiple themes
 - **Export options** for sharing and saving results
 
+### Chat Saving
+- **Local chat history**: Save and manage your chat sessions locally
+- **Customizable settings**: Control chat saving preferences and more
+
 ---
 
 ## Performance Metrics
@@ -267,6 +271,10 @@ For quick access to Hush from anywhere on your system, you can create a global k
 - Keep technical specifications for code assistance
 - Maintain contextual information across different sessions
 
+### Chat Saving
+- **Local chat history**: Save and manage your chat sessions locally
+- **Customizable settings**: Control chat saving preferences and more
+
 ---
 
 ## Keyboard Shortcuts
@@ -399,7 +407,7 @@ maxCPUUsage: 25%
 backgroundProcessing: true
 ```
 
-### Version 1.1.0 (Current)
+### Version 1 (Current)
 - **Initial Release**: Complete feature set
 - **Audio Transcription**: Real-time mic and per resource system audio
 - **Screenshot Processing**: AI-powered image analysis

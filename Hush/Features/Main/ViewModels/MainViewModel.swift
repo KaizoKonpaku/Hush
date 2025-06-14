@@ -31,6 +31,9 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
     /// Service for audio transcription
     private let transcriptionService = TranscriptionService.shared
     
+    /// Service for saving chat sessions
+    private let chatSessionService = ChatSessionService.shared
+    
     // MARK: - Private Properties
     
     /// Set of cancellables for managing subscriptions
@@ -57,6 +60,9 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
         
         // Subscribe to transcription updates
         setupTranscriptionSubscription()
+        
+        // Subscribe to chat activity changes to start/end sessions
+        setupChatActivitySubscription()
     }
     
     /// Called when shortcuts are changed in settings
@@ -96,6 +102,36 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
             .store(in: &cancellables)
     }
     
+    /// Sets up subscription to chat activity changes
+    private func setupChatActivitySubscription() {
+        appState.$isChatActive
+            .receive(on: RunLoop.main)
+            .sink { [weak self] isChatActive in
+                guard let self = self else { return }
+                
+                if isChatActive {
+                    // Only save the current session if it exists
+                    self.chatSessionService.saveCurrentSession()
+                    print("🌟 Chat activated - saved current session")
+                } else {
+                    // Save the chat session when chat is deactivated
+                    self.chatSessionService.saveCurrentSession()
+                    print("💤 Chat deactivated - saved session")
+                }
+            }
+            .store(in: &cancellables)
+            
+        // Also monitor app going to background for auto-saving
+        NotificationCenter.default.addObserver(
+            forName: NSApplication.willResignActiveNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            print("📱 App entering background - saving chat")
+            self?.chatSessionService.saveCurrentSession()
+        }
+    }
+    
     /// Cleans up resources when view model is no longer needed
     func cleanup() {
         stopAutoScroll()
@@ -105,6 +141,9 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
         if appState.isTranscribing {
             transcriptionService.stopRecording()
         }
+        
+        // Save and close current chat session
+        chatSessionService.closeCurrentSession()
         
         // Remove notification observer
         NotificationCenter.default.removeObserver(self)
@@ -132,6 +171,9 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
     
     /// Creates a new session and resets app state
     func newSession() {
+        // Create a new chat session
+        chatSessionService.startNewSession()
+        
         // Stop any ongoing streaming and processing
         appState.isProcessing = false
         appState.isStreaming = false
@@ -160,6 +202,8 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
     func toggleChat() {
         // Toggle chat state
         appState.isChatActive.toggle()
+        
+        // Chat activity subscription will handle session management
         
         // Mouse events are now handled in the AppState didSet observer for isChatActive
             }
@@ -213,22 +257,34 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
         // Extract NSImages from CapturedImage objects
         let images = appState.capturedImages.map { $0.image }
         
-        // Determine the prompt to use for the API request
+        // Build the prompt with all available context
         var prompt = "These are screenshots from my screen. Please analyze what you see and describe the content in detail. and provide implementation to the problem in the language of the code specified in the screenshot."
         
-        // Check for custom prompt
-        if let selectedPrompt = AppPreferences.shared.selectedPrompt {
-            prompt = selectedPrompt.prompt
+        // Add chat text if available
+        if !appState.chatText.isEmpty {
+            prompt = "\(prompt)\n\nUser input: \(appState.chatText)"
+            // Save user input to chat session
+            chatSessionService.addUserMessage(appState.chatText)
         }
         
-        // Check for available text inputs (prioritize chat text, then transcript)
-        if appState.isChatActive && !appState.chatText.isEmpty {
-            // Combine custom prompt with chat text
-            prompt = AppPreferences.shared.selectedPrompt != nil ? "\(prompt)\n\nUser input: \(appState.chatText)" : appState.chatText
-        } else if !appState.transcriptText.isEmpty {
-            // Combine custom prompt with transcription text
-            let transcriptPrompt = AppPreferences.shared.selectedPrompt != nil ? "\(prompt)\n\nTranscription: \(appState.transcriptText)" : "Here's a transcription of audio along with screenshots. Please analyze both and respond accordingly:\n\nTranscription: \(appState.transcriptText)\n\nFor the screenshots: \(prompt)"
-            prompt = transcriptPrompt
+        // Add transcript if available
+        if !appState.transcriptText.isEmpty {
+            prompt = "\(prompt)\n\nTranscription context: \(appState.transcriptText)"
+            // Save transcript as user input if no chat text was provided
+            if appState.chatText.isEmpty {
+                chatSessionService.addUserMessage("Transcription: \(appState.transcriptText)")
+            }
+        }
+        
+        // Add custom prompt if selected
+        if let selectedPrompt = AppPreferences.shared.selectedPrompt {
+            prompt = "\(selectedPrompt.prompt)\n\n\(prompt)"
+        } else {
+            // Add default interview-style prompt if no custom prompt is selected
+            let defaultPrompt = """
+            You are an AI that helps me answer questions like I'm speaking in a real interview. Respond as if I'm the one giving the answer, using clear, confident, and conversational language — no dramatic, overly formal, or show-offy words. Keep it natural and direct, like I'm explaining things in a relaxed, professional way. Only respond to the latest question — don't repeat or summarize older context unless I ask for it.
+            """
+            prompt = "\(defaultPrompt)\n\n\(prompt)"
         }
         
         // Add memory context if available
@@ -285,6 +341,9 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
                         if self.appState.isChatActive {
                             self.appState.chatText = ""
                         }
+                        
+                        // Save AI response to chat session when finished
+                        self.chatSessionService.addAIResponse(self.appState.resultContent)
                     }
                 },
                 onError: { [weak self] error in
@@ -373,6 +432,12 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
     /// Submits the current message text
     func sendMessage() {
         if !appState.chatText.isEmpty {
+            // Make sure we have an active session
+            ensureActiveChatSession()
+            
+            // Save user message to chat session
+            chatSessionService.addUserMessage(appState.chatText)
+            
             if !appState.capturedImages.isEmpty {
                 // If there are screenshots, process them with the text prompt
                 processScreenshots()
@@ -380,6 +445,14 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
                 // Process text only
             processTextWithAI(appState.chatText)
             }
+        }
+    }
+    
+    /// Makes sure there's an active chat session, creates one if needed
+    private func ensureActiveChatSession() {
+        // Force-attempt to start a new session if needed - the service handles duplicates
+        if appState.isChatActive {
+            chatSessionService.startNewSession()
         }
     }
     
@@ -397,13 +470,26 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
         appState.resultContent = ""
         structuredContent = StreamContent()
         
-        // Store if this was called from transcript to avoid clearing it
-        let isFromTranscript = text == appState.transcriptText
+        // Save user input to chat session
+        chatSessionService.addUserMessage(text)
         
-        // Build the prompt with custom prompt if selected
+        // Build the prompt with all available context
         var finalPrompt = text
+        
+        // Add transcript if available
+        if !appState.transcriptText.isEmpty {
+            finalPrompt = "Transcription context:\n\(appState.transcriptText)\n\nUser input:\n\(text)"
+        }
+        
+        // Add custom prompt if selected
         if let selectedPrompt = AppPreferences.shared.selectedPrompt {
-            finalPrompt = "\(selectedPrompt.prompt)\n\nUser input: \(text)"
+            finalPrompt = "\(selectedPrompt.prompt)\n\n\(finalPrompt)"
+        } else {
+            // Add default interview-style prompt if no custom prompt is selected
+            let defaultPrompt = """
+            You are an AI that helps me answer questions like I'm speaking in a real interview. Respond as if I'm the one giving the answer, using clear, confident, and conversational language — no dramatic, overly formal, or show-offy words. Keep it natural and direct, like I'm explaining things in a relaxed, professional way. Only respond to the latest question — don't repeat or summarize older context unless I ask for it.
+            """
+            finalPrompt = "\(defaultPrompt)\n\n\(finalPrompt)"
         }
         
         // Add memory context if available
@@ -456,8 +542,13 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
                     self.appState.isProcessing = false
                     
                         // Clear the input field when complete, but only if from chat
-                        if !isFromTranscript {
+                        if text == self.appState.chatText {
                     self.appState.chatText = ""
+                        }
+                        
+                        // Save AI response to chat session when finished
+                        if !self.appState.resultContent.isEmpty {
+                            self.chatSessionService.addAIResponse(self.appState.resultContent)
                         }
                     }
                 },
