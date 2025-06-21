@@ -20,6 +20,9 @@ final class SettingsViewModel: ObservableObject {
     /// API key for Gemini AI service
     @Published var geminiApiKey: String = ""
     
+    /// Selected Gemini model
+    @Published var geminiModel: String = "gemini-2.5-flash"
+    
     /// Whether transcription viewer is shown
     @Published var showTranscriptionViewer: Bool = true
     
@@ -90,6 +93,9 @@ final class SettingsViewModel: ObservableObject {
         if let apiKey = preferences.geminiApiKey {
             self.geminiApiKey = apiKey
         }
+        
+        // Load Gemini model
+        self.geminiModel = preferences.geminiModel
         
         // Load audio source
         self.audioSource = preferences.audioSource
@@ -163,6 +169,7 @@ final class SettingsViewModel: ObservableObject {
         preferences.customPrompts = customPrompts
         preferences.selectedPromptId = selectedPromptId
         preferences.saveChatsLocally = saveChatsLocally
+        preferences.geminiModel = geminiModel
     }
     
     /// Reset all settings to default values

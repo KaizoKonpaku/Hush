@@ -65,6 +65,7 @@ class AppPreferences {
         static let selectedPromptId = "selectedPromptId"
         static let memories = "memories"
         static let saveChatsLocally = "saveChatsLocally"
+        static let geminiModel = "geminiModel"
         
         // Keychain constants
         static let keychainService = "com.hush.app"
@@ -91,7 +92,9 @@ class AppPreferences {
             Keys.startAtLogin: false,
             Keys.enabledShortcuts: [:], // Empty dictionary for now
             Keys.showTranscriptionViewer: true,
-            Keys.audioSource: 1 // Default to system audio (1)
+            Keys.audioSource: 1, // Default to system audio (1)
+            Keys.geminiModel: "gemini-2.5-flash", // Default to 2.5 version
+            Keys.saveChatsLocally: true
         ]
         
         defaults.register(defaults: defaultValues)
@@ -301,6 +304,12 @@ class AppPreferences {
         set { defaults.set(newValue, forKey: Keys.saveChatsLocally) }
     }
     
+    /// Get/set the selected Gemini model
+    var geminiModel: String {
+        get { defaults.string(forKey: Keys.geminiModel) ?? "gemini-2.5-flash" }
+        set { defaults.set(newValue, forKey: Keys.geminiModel) }
+    }
+    
     /// Reset all preferences to default values
     func resetToDefaults() {
         isAlwaysOnTop = true
@@ -311,6 +320,7 @@ class AppPreferences {
         customPrompts = defaultCustomPrompts()
         selectedPromptId = nil
         saveChatsLocally = true
+        geminiModel = "gemini-2.5-flash"
         // Don't reset API key when resetting other preferences
     }
     

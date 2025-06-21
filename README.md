@@ -62,6 +62,7 @@ Hush is a powerful macOS application that supercharges your productivity by prov
 
 ### AI-Powered Analysis
 - **Google Gemini integration** for advanced AI processing
+- **Model selection** between Gemini 2.5 Flash and 2.0 Flash
 - **Natural language understanding** and generation
 - **Content summarization** and analysis
 - **Smart suggestions** and recommendations
@@ -158,7 +159,8 @@ open https://aistudio.google.com/app/apikey
 1. Open Hush Settings (⌘,)
 2. Navigate to **API Configuration** tab
 3. Enter your Gemini API key
-4. Click **Save** to activate AI features
+4. Select your preferred Gemini model (2.5 Flash or 2.0 Flash)
+5. Click **Save** to activate AI features
 
 ### 2. Audio Permissions
 Hush requires microphone and per resource system audio permissions:

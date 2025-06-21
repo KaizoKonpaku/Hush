@@ -368,28 +368,28 @@ struct SettingsView: View {
                             HStack(spacing: 8) {
                                 Button("Paste") {
                                     pasteAPIKey()
-            }
+                                }
                                 .buttonStyle(.bordered)
                                 .frame(maxWidth: .infinity, minHeight: 32)
                                 .help("Paste API key from clipboard")
                                 
                                 Button("Save") {
-                        viewModel.saveApiKey()
-                    }
-                    .buttonStyle(.borderedProminent)
+                                    viewModel.saveApiKey()
+                                }
+                                .buttonStyle(.borderedProminent)
                                 .frame(maxWidth: .infinity, minHeight: 32)
                             }
-            
-            HStack {
-                    if viewModel.showApiKeySaved {
+                            
+                            HStack {
+                                if viewModel.showApiKeySaved {
                                     HStack(spacing: 4) {
                                         Image(systemName: "checkmark.circle.fill")
                                             .foregroundColor(.green)
                                         Text("Saved")
-                }
-                            .foregroundColor(.green)
-                            .transition(.opacity)
-                    }
+                                    }
+                                    .foregroundColor(.green)
+                                    .transition(.opacity)
+                                }
                                 
                                 if showPasteFeedback {
                                     HStack(spacing: 4) {
@@ -399,11 +399,34 @@ struct SettingsView: View {
                                     }
                                     .foregroundColor(.blue)
                                     .transition(.opacity)
-            }
-            
-            Spacer()
-        }
-    }
+                                }
+                                
+                                Spacer()
+                            }
+                        }
+                        
+                        Divider()
+                        
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Model Selection")
+                                .font(.headline)
+                                
+                            Text("Choose which Gemini model to use")
+                                .font(.body)
+                                .foregroundColor(.secondary)
+                                .fixedSize(horizontal: false, vertical: true)
+                                
+                            Picker("Model", selection: $viewModel.geminiModel) {
+                                Text("Gemini 2.5 Flash").tag("gemini-2.5-flash")
+                                Text("Gemini 2.0 Flash").tag("gemini-2.0-flash")
+                            }
+                            .pickerStyle(.menu)
+                            .onChange(of: viewModel.geminiModel) {
+                                viewModel.saveSettings()
+                            }
+                        }
+                        
+                        Divider()
     
                         VStack(alignment: .leading, spacing: 8) {
                             Text("Get your API key")

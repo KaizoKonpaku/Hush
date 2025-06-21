@@ -34,7 +34,7 @@ final class AppInfo {
     
     /// App build number
     var build: String {
-        let buildNumber = string(for: "CFBundleVersion") ?? "H0X6"
+        let buildNumber = string(for: "CFBundleVersion") ?? "HX07"
         print("Build number: \(buildNumber)")
         return buildNumber
     }

@@ -9,12 +9,14 @@ final class GeminiService: NSObject {
     /// Base URL for the Gemini API
     private let baseURL = "https://generativelanguage.googleapis.com/v1beta"
     
-    /// Default model to use for requests
-    private let defaultModel = "gemini-2.0-flash"
-    
     /// API key from user preferences
     private var apiKey: String? {
         return AppPreferences.shared.geminiApiKey
+    }
+    
+    /// Model to use for requests
+    private var model: String {
+        return AppPreferences.shared.geminiModel
     }
     
     /// The current data task for streaming
@@ -103,7 +105,7 @@ final class GeminiService: NSObject {
         streamingTask?.cancel()
         
         // Create URL with the proper SSE parameter
-        guard let url = URL(string: "\(baseURL)/models/\(defaultModel):streamGenerateContent?alt=sse&key=\(apiKey)") else {
+        guard let url = URL(string: "\(baseURL)/models/\(model):streamGenerateContent?alt=sse&key=\(apiKey)") else {
             onError(GeminiError.invalidURL)
             return
         }
@@ -140,8 +142,8 @@ final class GeminiService: NSObject {
     func generateStreamingCompletionWithImages(
         prompt: String,
         images: [NSImage],
-                                    onUpdate: @escaping (String) -> Void,
-                                    onComplete: @escaping (String) -> Void,
+        onUpdate: @escaping (String) -> Void,
+        onComplete: @escaping (String) -> Void,
         onError: @escaping (Error) -> Void
     ) {
         guard let apiKey = apiKey, !apiKey.isEmpty else {
@@ -163,7 +165,7 @@ final class GeminiService: NSObject {
         streamingTask?.cancel()
         
         // Create URL with the proper SSE parameter
-        guard let url = URL(string: "\(baseURL)/models/\(defaultModel):streamGenerateContent?alt=sse&key=\(apiKey)") else {
+        guard let url = URL(string: "\(baseURL)/models/\(model):streamGenerateContent?alt=sse&key=\(apiKey)") else {
             onError(GeminiError.invalidURL)
             return
         }
@@ -222,7 +224,7 @@ final class GeminiService: NSObject {
             return
         }
         
-        guard let url = URL(string: "\(baseURL)/models/\(defaultModel):generateContent?key=\(apiKey)") else {
+        guard let url = URL(string: "\(baseURL)/models/\(model):generateContent?key=\(apiKey)") else {
             completion(.failure(GeminiError.invalidURL))
             return
         }
