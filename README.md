@@ -69,6 +69,8 @@ Hush is a powerful macOS application that supercharges your productivity by prov
 - **Context-aware responses** based on input type
 - **Custom prompts system** for personalized AI processing
 - **Memory persistence** for preserving important context across sessions
+- **Rich markdown rendering** with swift-markdown-ui for beautiful formatting
+- **Syntax highlighting** powered by Highlightr with 170+ languages and customizable themes
 
 ### Productivity Features
 - **20+ keyboard shortcuts** for lightning-fast workflow
@@ -363,15 +365,12 @@ For quick access to Hush from anywhere on your system, you can create a global k
 - **Native macOS**: Follows Apple Human Interface Guidelines
 - **Minimal & Clean**: Distraction-free interface
 - **Keyboard-First**: Optimized for power users
-- **Accessibility**: Full VoiceOver and accessibility support
-- **Responsive**: Adapts to different window sizes
 
 ### Customization Options
 - **Window Opacity**: 50% to 100% transparency
 - **Always on Top**: Keep window above others
 - **Compact Mode**: Minimal interface for focused work
 - **Dark/Light Mode**: Automatic system appearance
-- **Font Sizing**: Adjustable text sizes
 
 ### Visual Features
 - **Live Indicators**: Real-time status updates
@@ -435,6 +434,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Google**: For the powerful Gemini AI API
 - **Cursor**: For AI assstance with Claude and Gemini.
 - **insidegui**: For [Core Audio System Capture](https://github.com/insidegui/AudioCap)
+- **swift-markdown-ui**: Rich markdown rendering and formatting
+- **Highlightr**: Powerful syntax highlighting with 170+ languages and theme support
 ---
 
 ## Show Your Support

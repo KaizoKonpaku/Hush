@@ -227,9 +227,9 @@ struct SettingsView: View {
                         ) {
                             Toggle("", isOn: $viewModel.startAtLogin)
                                 .toggleStyle(.switch)
-                    .onChange(of: viewModel.startAtLogin) {
-                        viewModel.toggleStartAtLogin()
-                    }
+                                .onChange(of: viewModel.startAtLogin) {
+                                    viewModel.toggleStartAtLogin()
+                                }
                         }
                         
                         SettingsRow(
@@ -245,10 +245,10 @@ struct SettingsView: View {
                             description: "Adjust the transparency of the Hush window"
                         ) {
                             VStack(alignment: .trailing, spacing: 4) {
-                    Text("\(Int(viewModel.defaultOpacity * 100))%")
+                                Text("\(Int(viewModel.defaultOpacity * 100))%")
                                     .font(.caption)
                                     .foregroundColor(.secondary)
-                        .frame(width: 40)
+                                    .frame(width: 40)
                                 
                                 Slider(
                                     value: $viewModel.defaultOpacity,
@@ -256,6 +256,80 @@ struct SettingsView: View {
                                     step: 0.05
                                 )
                                 .frame(width: 120)
+                            }
+                        }
+                        
+                        Divider()
+                        
+                        SettingsRow(
+                            title: "Light Mode Theme",
+                            description: "Choose the syntax highlighting theme for light mode"
+                        ) {
+                            Picker("", selection: $viewModel.lightTheme) {
+                                Group {
+                                    Text("Xcode").tag("xcode")
+                                    Text("GitHub").tag("github")
+                                    Text("Atom One Light").tag("atom-one-light")
+                                    Text("VS").tag("vs")
+                                    Text("Default").tag("default")
+                                    Text("Foundation").tag("foundation")
+                                    Text("Color Brewer").tag("color-brewer")
+                                    Text("Idea").tag("idea")
+                                    Text("Arduino Light").tag("arduino-light")
+                                    Text("Ascetic").tag("ascetic")
+                                }
+                                Group {
+                                    Text("Docco").tag("docco")
+                                    Text("Googlecode").tag("googlecode")
+                                    Text("Grayscale").tag("grayscale")
+                                    Text("Hybrid").tag("hybrid")
+                                    Text("Kimbie Light").tag("kimbie.light")
+                                    Text("Paraiso Light").tag("paraiso-light")
+                                    Text("Solarized Light").tag("solarized-light")
+                                    Text("Tomorrow").tag("tomorrow")
+                                }
+                            }
+                            .pickerStyle(.menu)
+                            .frame(width: 150)
+                            .onChange(of: viewModel.lightTheme) {
+                                viewModel.saveSettings()
+                            }
+                        }
+                        
+                        SettingsRow(
+                            title: "Dark Mode Theme",
+                            description: "Choose the syntax highlighting theme for dark mode"
+                        ) {
+                            Picker("", selection: $viewModel.darkTheme) {
+                                Group {
+                                    Text("Monokai").tag("monokai")
+                                    Text("Dracula").tag("dracula")
+                                    Text("Atom One Dark").tag("atom-one-dark")
+                                    Text("Nord").tag("nord")
+                                    Text("Tomorrow Night").tag("tomorrow-night")
+                                    Text("Ocean Dark").tag("ocean")
+                                    Text("Solarized Dark").tag("solarized-dark")
+                                    Text("Zenburn").tag("zenburn")
+                                    Text("Agate").tag("agate")
+                                    Text("Androidstudio").tag("androidstudio")
+                                }
+                                Group {
+                                    Text("Far").tag("far")
+                                    Text("Github Dark").tag("github-dark")
+                                    Text("Gruvbox Dark").tag("gruvbox-dark")
+                                    Text("Hopscotch").tag("hopscotch")
+                                    Text("Hybrid").tag("hybrid")
+                                    Text("Kimbie Dark").tag("kimbie.dark")
+                                    Text("Monokai Sublime").tag("monokai-sublime")
+                                    Text("Obsidian").tag("obsidian")
+                                    Text("Paraiso Dark").tag("paraiso-dark")
+                                    Text("Railscasts").tag("railscasts")
+                                }
+                            }
+                            .pickerStyle(.menu)
+                            .frame(width: 150)
+                            .onChange(of: viewModel.darkTheme) {
+                                viewModel.saveSettings()
                             }
                         }
                     }

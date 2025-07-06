@@ -4,7 +4,7 @@ import AVFoundation
 import OSLog
 
 @MainActor
-final class SystemAudioRecorder: ObservableObject {
+final class SystemAudioService: ObservableObject {
     // MARK: - Published Properties
     
     /// Whether system audio recording is active
@@ -12,17 +12,17 @@ final class SystemAudioRecorder: ObservableObject {
     
     // MARK: - Private Properties
     
-    private let logger = Logger(subsystem: kAppSubsystem, category: String(describing: SystemAudioRecorder.self))
+    private let logger = Logger(subsystem: kAppSubsystem, category: String(describing: SystemAudioService.self))
     private var processController = AudioProcessController()
     private var tap: ProcessTap?
     private var recorder: ProcessTapRecorder?
     private let transcriptionService = TranscriptionService.shared
     private var cancellables = Set<AnyCancellable>()
-    private let queue = DispatchQueue(label: "SystemAudioRecorder", qos: .userInitiated)
+    private let queue = DispatchQueue(label: "SystemAudioService", qos: .userInitiated)
     
     // MARK: - Shared Instance
     
-    static let shared = SystemAudioRecorder()
+    static let shared = SystemAudioService()
     
     // MARK: - Initialization
     
@@ -56,7 +56,7 @@ final class SystemAudioRecorder: ObservableObject {
                 AppState.shared.showTranscript = AppPreferences.shared.showTranscriptionViewer
             } else {
                 logger.error("No system audio process found")
-                throw NSError(domain: "SystemAudioRecorderErrorDomain", code: 1, 
+                throw NSError(domain: "SystemAudioServiceErrorDomain", code: 1, 
                               userInfo: [NSLocalizedDescriptionKey: "No system audio process found"])
             }
         } catch {
@@ -131,7 +131,7 @@ final class SystemAudioRecorder: ObservableObject {
         
         // Get the tap stream description
         guard let streamDescription = newTap.tapStreamDescription else {
-            throw NSError(domain: "SystemAudioRecorderErrorDomain", code: 2, 
+            throw NSError(domain: "SystemAudioServiceErrorDomain", code: 2, 
                           userInfo: [NSLocalizedDescriptionKey: "Could not get audio stream description"])
         }
         

@@ -1,6 +1,17 @@
 import SwiftUI
 import HotKey
 
+@main
+struct HushApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
+    var body: some Scene {
+        Settings {
+            EmptyView()
+        }
+    }
+}
+
 let kAppSubsystem = "com.kaizokonpaku.Hush"
 
 /// Custom window that prevents it from becoming key or main window
@@ -217,5 +228,5 @@ final class AppInitializer {
         
         // Set up again with new settings
         setupActivationShortcut()
-            }
-        }
+    }
+}

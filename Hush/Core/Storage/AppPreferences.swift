@@ -66,6 +66,8 @@ class AppPreferences {
         static let memories = "memories"
         static let saveChatsLocally = "saveChatsLocally"
         static let geminiModel = "geminiModel"
+        static let lightTheme = "lightTheme"
+        static let darkTheme = "darkTheme"
         
         // Keychain constants
         static let keychainService = "com.hush.app"
@@ -94,7 +96,9 @@ class AppPreferences {
             Keys.showTranscriptionViewer: true,
             Keys.audioSource: 1, // Default to system audio (1)
             Keys.geminiModel: "gemini-2.5-flash", // Default to 2.5 version
-            Keys.saveChatsLocally: true
+            Keys.saveChatsLocally: true,
+            Keys.lightTheme: "xcode", // Default light theme
+            Keys.darkTheme: "monokai" // Default dark theme
         ]
         
         defaults.register(defaults: defaultValues)
@@ -308,6 +312,18 @@ class AppPreferences {
     var geminiModel: String {
         get { defaults.string(forKey: Keys.geminiModel) ?? "gemini-2.5-flash" }
         set { defaults.set(newValue, forKey: Keys.geminiModel) }
+    }
+    
+    /// Get/set the theme for light mode
+    var lightTheme: String {
+        get { defaults.string(forKey: Keys.lightTheme) ?? "xcode" }
+        set { defaults.set(newValue, forKey: Keys.lightTheme) }
+    }
+    
+    /// Get/set the theme for dark mode
+    var darkTheme: String {
+        get { defaults.string(forKey: Keys.darkTheme) ?? "monokai" }
+        set { defaults.set(newValue, forKey: Keys.darkTheme) }
     }
     
     /// Reset all preferences to default values

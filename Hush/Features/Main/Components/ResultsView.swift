@@ -44,26 +44,32 @@ struct ResultsView: View {
             VisualEffectView(material: .hudWindow, blendingMode: .behindWindow)
             
             // Content area
-            if let structured = structuredContent {
-                // Use the structured content view when available
+            ScrollViewReader { proxy in
                 ScrollView {
-                    StreamContentView(content: structured)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .id("structuredResults")
+                    if let structured = structuredContent {
+                        // Use the structured content view when available
+                        StreamContentView(content: structured)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .id("structuredResults")
+                    } else {
+                        // Fall back to plain text for backward compatibility
+                        Text(LocalizedStringKey(content))
+                            .font(.system(.body, design: .monospaced))
+                            .foregroundColor(.primary)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, Constants.UI.dividerHeight / 2)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .id("resultsText")
+                    }
                 }
                 .accessibilityIdentifier("resultsScrollView")
-            } else {
-                // Fall back to plain text for backward compatibility
-            ScrollView {
-                    Text(LocalizedStringKey(content))
-                    .font(.system(.body, design: .monospaced))
-                    .foregroundColor(.primary)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, Constants.UI.dividerHeight / 2)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .id("resultsText") // Add ID for scrolling
-            }
-            .accessibilityIdentifier("resultsScrollView")
+                .onChange(of: structuredContent?.items.count) { oldCount, newCount in
+                    if isAutoScrollEnabled {
+                        withAnimation {
+                            proxy.scrollTo(structuredContent?.items.last?.id ?? "resultsText", anchor: .bottom)
+                        }
+                    }
+                }
             }
             
             // Indicators (positioned in bottom right)

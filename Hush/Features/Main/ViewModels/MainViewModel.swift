@@ -14,7 +14,7 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
     @ObservedObject private var appState: AppState
     
     /// Manager for keyboard shortcuts
-    private var hotKeyManager = HotKeyManager()
+    private var hotKeyService = HotKeyService()
     
     /// Controller for settings window
     private let settingsController = SettingsWindowController()
@@ -75,14 +75,14 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
     
     /// Sets up keyboard shortcuts
     func setupHotKeys() {
-        hotKeyManager.setupHotKeys(handler: self)
+        hotKeyService.setupHotKeys(handler: self)
     }
     
     /// Refreshes the hotkey configuration after settings changes
     func refreshHotKeys() {
         // Clean up and re-register all hotkeys
-        hotKeyManager.cleanup()
-        hotKeyManager.setupHotKeys(handler: self)
+        hotKeyService.cleanup()
+        hotKeyService.setupHotKeys(handler: self)
     }
     
     /// Sets up subscription to transcription service updates
@@ -135,7 +135,7 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
     /// Cleans up resources when view model is no longer needed
     func cleanup() {
         stopAutoScroll()
-        hotKeyManager.cleanup()
+        hotKeyService.cleanup()
         
         // Stop transcription if active
         if appState.isTranscribing {
@@ -184,8 +184,8 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
         }
         
         // Stop system audio recording if active
-        if SystemAudioRecorder.shared.isRecording {
-            SystemAudioRecorder.shared.stopRecording()
+        if SystemAudioService.shared.isRecording {
+            SystemAudioService.shared.stopRecording()
         }
         
         // Cancel any ongoing streaming request in GeminiService
@@ -927,7 +927,7 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
     // MARK: - App Management Methods
     
     /// Hides the application
-    /// - Note: Actual implementation handled in HotKeyManager.toggleAppVisibility()
+    /// - Note: Actual implementation handled in HotKeyService.toggleAppVisibility()
     func hideApp() {
         NSApp.hide(nil)
     }
@@ -1021,7 +1021,7 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
             
         case .systemAudio:
             // Toggle system audio recording
-            SystemAudioRecorder.shared.toggleRecording()
+            SystemAudioService.shared.toggleRecording()
         }
     }
     
@@ -1036,12 +1036,12 @@ final class MainViewModel: ObservableObject, HotKeyActionHandler {
     /// Toggles between microphone and system audio sources
     func toggleAudioSource() {
         // Check if we're currently recording and save current source
-        let isRecording = appState.isLiveMode || SystemAudioRecorder.shared.isRecording
+        let isRecording = appState.isLiveMode || SystemAudioService.shared.isRecording
         let currentSource = appState.audioSource
         
         // Stop ALL recording with minimal state updates
-        if SystemAudioRecorder.shared.isRecording {
-            SystemAudioRecorder.shared.stopRecording()
+        if SystemAudioService.shared.isRecording {
+            SystemAudioService.shared.stopRecording()
         }
         
         if appState.isLiveMode {

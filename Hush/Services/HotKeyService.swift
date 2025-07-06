@@ -85,7 +85,7 @@ protocol HotKeyActionHandler {
 }
 
 /// Service class responsible for managing all application hotkeys
-final class HotKeyManager: ObservableObject {
+final class HotKeyService: ObservableObject {
     // MARK: - Properties
     
     // Settings and basic app controls

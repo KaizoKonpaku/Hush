@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0EFEE90B2DE19B2C00C6E799 /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = 0EFEE90A2DE19B2C00C6E799 /* HotKey */; };
+		FF38874B2E1B971F00E516EB /* Highlightr in Frameworks */ = {isa = PBXBuildFile; productRef = FF38874A2E1B971F00E516EB /* Highlightr */; };
+		FFCABECB2E1AC9B700178AF8 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = FFCABECA2E1AC9B700178AF8 /* MarkdownUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +42,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF38874B2E1B971F00E516EB /* Highlightr in Frameworks */,
 				0EFEE90B2DE19B2C00C6E799 /* HotKey in Frameworks */,
+				FFCABECB2E1AC9B700178AF8 /* MarkdownUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +88,8 @@
 			name = Hush;
 			packageProductDependencies = (
 				0EFEE90A2DE19B2C00C6E799 /* HotKey */,
+				FFCABECA2E1AC9B700178AF8 /* MarkdownUI */,
+				FF38874A2E1B971F00E516EB /* Highlightr */,
 			);
 			productName = Hush;
 			productReference = 0E9422CE2DE14CD300A939ED /* Hush.app */;
@@ -115,6 +121,8 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				0EFEE9092DE19B2C00C6E799 /* XCRemoteSwiftPackageReference "HotKey" */,
+				FFCABEC92E1AC9B700178AF8 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
+				FF3887492E1B971F00E516EB /* XCRemoteSwiftPackageReference "Highlightr" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0E9422CF2DE14CD300A939ED /* Products */;
@@ -278,7 +286,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = HX07;
+				CURRENT_PROJECT_VERSION = HX08;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = GH69QQ984P;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -314,7 +322,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = HX07;
+				CURRENT_PROJECT_VERSION = HX08;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = GH69QQ984P;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -373,6 +381,22 @@
 				kind = branch;
 			};
 		};
+		FF3887492E1B971F00E516EB /* XCRemoteSwiftPackageReference "Highlightr" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/raspu/Highlightr.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.0;
+			};
+		};
+		FFCABEC92E1AC9B700178AF8 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -380,6 +404,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0EFEE9092DE19B2C00C6E799 /* XCRemoteSwiftPackageReference "HotKey" */;
 			productName = HotKey;
+		};
+		FF38874A2E1B971F00E516EB /* Highlightr */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF3887492E1B971F00E516EB /* XCRemoteSwiftPackageReference "Highlightr" */;
+			productName = Highlightr;
+		};
+		FFCABECA2E1AC9B700178AF8 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFCABEC92E1AC9B700178AF8 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
