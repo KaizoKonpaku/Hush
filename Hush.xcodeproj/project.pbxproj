@@ -6,31 +6,41 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		0EFEE90B2DE19B2C00C6E799 /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = 0EFEE90A2DE19B2C00C6E799 /* HotKey */; };
-		FF38874B2E1B971F00E516EB /* Highlightr in Frameworks */ = {isa = PBXBuildFile; productRef = FF38874A2E1B971F00E516EB /* Highlightr */; };
-		FFCABECB2E1AC9B700178AF8 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = FFCABECA2E1AC9B700178AF8 /* MarkdownUI */; };
-/* End PBXBuildFile section */
+/* Begin PBXContainerItemProxy section */
+		FFAA00072F4BDA300091A567 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FFDF24552F4BDA300091A567 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FFDF245C2F4BDA300091A567;
+			remoteInfo = HUSH;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0E9422CE2DE14CD300A939ED /* Hush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hush.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFAA00012F4BDA300091A567 /* HushTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HushTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFDF245D2F4BDA300091A567 /* Hush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		0E7EEE642DE5EAAF00FE2E2C /* Exceptions for "Hush" folder in "Hush" target */ = {
+		FFEFD0392F4C5A2D0077C616 /* Exceptions for "Hush" folder in "Hush" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = 0E9422CD2DE14CD300A939ED /* Hush */;
+			target = FFDF245C2F4BDA300091A567 /* Hush */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		0E9422D02DE14CD300A939ED /* Hush */ = {
+		FFAA00022F4BDA300091A567 /* HushTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = HushTests;
+			sourceTree = "<group>";
+		};
+		FFDF245F2F4BDA300091A567 /* Hush */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				0E7EEE642DE5EAAF00FE2E2C /* Exceptions for "Hush" folder in "Hush" target */,
+				FFEFD0392F4C5A2D0077C616 /* Exceptions for "Hush" folder in "Hush" target */,
 			);
 			path = Hush;
 			sourceTree = "<group>";
@@ -38,31 +48,37 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0E9422CB2DE14CD300A939ED /* Frameworks */ = {
+		FFAA00032F4BDA300091A567 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF38874B2E1B971F00E516EB /* Highlightr in Frameworks */,
-				0EFEE90B2DE19B2C00C6E799 /* HotKey in Frameworks */,
-				FFCABECB2E1AC9B700178AF8 /* MarkdownUI in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FFDF245A2F4BDA300091A567 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0E9422C52DE14CD300A939ED = {
+		FFDF24542F4BDA300091A567 = {
 			isa = PBXGroup;
 			children = (
-				0E9422D02DE14CD300A939ED /* Hush */,
-				0E9422CF2DE14CD300A939ED /* Products */,
+				FFDF245F2F4BDA300091A567 /* Hush */,
+				FFAA00022F4BDA300091A567 /* HushTests */,
+				FFDF245E2F4BDA300091A567 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		0E9422CF2DE14CD300A939ED /* Products */ = {
+		FFDF245E2F4BDA300091A567 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0E9422CE2DE14CD300A939ED /* Hush.app */,
+				FFDF245D2F4BDA300091A567 /* Hush.app */,
+				FFAA00012F4BDA300091A567 /* HushTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,72 +86,101 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0E9422CD2DE14CD300A939ED /* Hush */ = {
+		FFAA00062F4BDA300091A567 /* HushTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0E9422DA2DE14CD400A939ED /* Build configuration list for PBXNativeTarget "Hush" */;
+			buildConfigurationList = FFAA000B2F4BDA300091A567 /* Build configuration list for PBXNativeTarget "HushTests" */;
 			buildPhases = (
-				0E9422CA2DE14CD300A939ED /* Sources */,
-				0E9422CB2DE14CD300A939ED /* Frameworks */,
-				0E9422CC2DE14CD300A939ED /* Resources */,
+				FFAA00052F4BDA300091A567 /* Sources */,
+				FFAA00032F4BDA300091A567 /* Frameworks */,
+				FFAA00042F4BDA300091A567 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FFAA00082F4BDA300091A567 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				FFAA00022F4BDA300091A567 /* HushTests */,
+			);
+			name = HushTests;
+			packageProductDependencies = (
+			);
+			productName = HUSHTests;
+			productReference = FFAA00012F4BDA300091A567 /* HushTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FFDF245C2F4BDA300091A567 /* Hush */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FFDF24682F4BDA310091A567 /* Build configuration list for PBXNativeTarget "Hush" */;
+			buildPhases = (
+				FFDF24592F4BDA300091A567 /* Sources */,
+				FFDF245A2F4BDA300091A567 /* Frameworks */,
+				FFDF245B2F4BDA300091A567 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				0E9422D02DE14CD300A939ED /* Hush */,
+				FFDF245F2F4BDA300091A567 /* Hush */,
 			);
 			name = Hush;
 			packageProductDependencies = (
-				0EFEE90A2DE19B2C00C6E799 /* HotKey */,
-				FFCABECA2E1AC9B700178AF8 /* MarkdownUI */,
-				FF38874A2E1B971F00E516EB /* Highlightr */,
 			);
-			productName = Hush;
-			productReference = 0E9422CE2DE14CD300A939ED /* Hush.app */;
+			productName = HUSH;
+			productReference = FFDF245D2F4BDA300091A567 /* Hush.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		0E9422C62DE14CD300A939ED /* Project object */ = {
+		FFDF24552F4BDA300091A567 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1630;
-				LastUpgradeCheck = 1640;
+				LastSwiftUpdateCheck = 2620;
+				LastUpgradeCheck = 2630;
 				TargetAttributes = {
-					0E9422CD2DE14CD300A939ED = {
-						CreatedOnToolsVersion = 16.3;
+					FFAA00062F4BDA300091A567 = {
+						CreatedOnToolsVersion = 26.2;
+						TestTargetID = FFDF245C2F4BDA300091A567;
+					};
+					FFDF245C2F4BDA300091A567 = {
+						CreatedOnToolsVersion = 26.2;
 					};
 				};
 			};
-			buildConfigurationList = 0E9422C92DE14CD300A939ED /* Build configuration list for PBXProject "Hush" */;
+			buildConfigurationList = FFDF24582F4BDA300091A567 /* Build configuration list for PBXProject "Hush" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 0E9422C52DE14CD300A939ED;
+			mainGroup = FFDF24542F4BDA300091A567;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				0EFEE9092DE19B2C00C6E799 /* XCRemoteSwiftPackageReference "HotKey" */,
-				FFCABEC92E1AC9B700178AF8 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
-				FF3887492E1B971F00E516EB /* XCRemoteSwiftPackageReference "Highlightr" */,
 			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 0E9422CF2DE14CD300A939ED /* Products */;
+			productRefGroup = FFDF245E2F4BDA300091A567 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0E9422CD2DE14CD300A939ED /* Hush */,
+				FFAA00062F4BDA300091A567 /* HushTests */,
+				FFDF245C2F4BDA300091A567 /* Hush */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		0E9422CC2DE14CD300A939ED /* Resources */ = {
+		FFAA00042F4BDA300091A567 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FFDF245B2F4BDA300091A567 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -145,7 +190,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0E9422CA2DE14CD300A939ED /* Sources */ = {
+		FFAA00052F4BDA300091A567 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FFDF24592F4BDA300091A567 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -154,8 +206,72 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		FFAA00082F4BDA300091A567 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FFDF245C2F4BDA300091A567 /* Hush */;
+			targetProxy = FFAA00072F4BDA300091A567 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
-		0E9422D82DE14CD400A939ED /* Debug */ = {
+		FFAA00092F4BDA300091A567 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = GH69QQ984P;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.kaizosha.HUSHTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hush.app/Contents/MacOS/Hush";
+				TEST_TARGET_NAME = HUSH;
+			};
+			name = Debug;
+		};
+		FFAA000A2F4BDA300091A567 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = GH69QQ984P;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.kaizosha.HUSHTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hush.app/Contents/MacOS/Hush";
+				TEST_TARGET_NAME = HUSH;
+			};
+			name = Release;
+		};
+		FFDF24662F4BDA310091A567 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -191,7 +307,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = FJJB79XVG4;
+				DEVELOPMENT_TEAM = GH69QQ984P;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -210,17 +326,18 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		0E9422D92DE14CD400A939ED /* Release */ = {
+		FFDF24672F4BDA310091A567 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -256,7 +373,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = FJJB79XVG4;
+				DEVELOPMENT_TEAM = GH69QQ984P;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -269,82 +386,85 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
 		};
-		0E9422DB2DE14CD400A939ED /* Debug */ = {
+		FFDF24692F4BDA310091A567 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Hush/Hush.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_ENTITLEMENTS = HUSH/HUSH.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = HX08;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = GH69QQ984P;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_DEBUG_DYLIB = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Hush/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Hush;
+				INFOPLIST_FILE = HUSH/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HUSH;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Microphone access is needed to record and transcribe audio.";
-				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Speech recognition is used to transcribe audio recordings.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
-				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kaizokonpaku.Hush;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.kaizosha.HUSH;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		0E9422DC2DE14CD400A939ED /* Release */ = {
+		FFDF246A2F4BDA310091A567 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Hush/Hush.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_ENTITLEMENTS = HUSH/HUSH.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = HX08;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = GH69QQ984P;
+				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Hush/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Hush;
+				INFOPLIST_KEY_CFBundleDisplayName = HUSH;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Microphone access is needed to record and transcribe audio.";
-				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Speech recognition is used to transcribe audio recordings.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
-				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kaizokonpaku.Hush;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.kaizosha.HUSH;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -352,70 +472,34 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0E9422C92DE14CD300A939ED /* Build configuration list for PBXProject "Hush" */ = {
+		FFAA000B2F4BDA300091A567 /* Build configuration list for PBXNativeTarget "HushTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0E9422D82DE14CD400A939ED /* Debug */,
-				0E9422D92DE14CD400A939ED /* Release */,
+				FFAA00092F4BDA300091A567 /* Debug */,
+				FFAA000A2F4BDA300091A567 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0E9422DA2DE14CD400A939ED /* Build configuration list for PBXNativeTarget "Hush" */ = {
+		FFDF24582F4BDA300091A567 /* Build configuration list for PBXProject "Hush" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0E9422DB2DE14CD400A939ED /* Debug */,
-				0E9422DC2DE14CD400A939ED /* Release */,
+				FFDF24662F4BDA310091A567 /* Debug */,
+				FFDF24672F4BDA310091A567 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FFDF24682F4BDA310091A567 /* Build configuration list for PBXNativeTarget "Hush" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FFDF24692F4BDA310091A567 /* Debug */,
+				FFDF246A2F4BDA310091A567 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		0EFEE9092DE19B2C00C6E799 /* XCRemoteSwiftPackageReference "HotKey" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/soffes/HotKey";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-		FF3887492E1B971F00E516EB /* XCRemoteSwiftPackageReference "Highlightr" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/raspu/Highlightr.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.3.0;
-			};
-		};
-		FFCABEC92E1AC9B700178AF8 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.4.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		0EFEE90A2DE19B2C00C6E799 /* HotKey */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0EFEE9092DE19B2C00C6E799 /* XCRemoteSwiftPackageReference "HotKey" */;
-			productName = HotKey;
-		};
-		FF38874A2E1B971F00E516EB /* Highlightr */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FF3887492E1B971F00E516EB /* XCRemoteSwiftPackageReference "Highlightr" */;
-			productName = Highlightr;
-		};
-		FFCABECA2E1AC9B700178AF8 /* MarkdownUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FFCABEC92E1AC9B700178AF8 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
-			productName = MarkdownUI;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = 0E9422C62DE14CD300A939ED /* Project object */;
+	rootObject = FFDF24552F4BDA300091A567 /* Project object */;
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1640"
+   LastUpgradeVersion = "2640"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,7 +15,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0E9422CD2DE14CD300A939ED"
+               BlueprintIdentifier = "FFDF245C2F4BDA300091A567"
                BuildableName = "Hush.app"
                BlueprintName = "Hush"
                ReferencedContainer = "container:Hush.xcodeproj">
@@ -39,12 +39,13 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES">
+      allowLocationSimulation = "YES"
+      queueDebuggingEnableBacktraceRecording = "Yes">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0E9422CD2DE14CD300A939ED"
+            BlueprintIdentifier = "FFDF245C2F4BDA300091A567"
             BuildableName = "Hush.app"
             BlueprintName = "Hush"
             ReferencedContainer = "container:Hush.xcodeproj">
@@ -61,7 +62,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0E9422CD2DE14CD300A939ED"
+            BlueprintIdentifier = "FFDF245C2F4BDA300091A567"
             BuildableName = "Hush.app"
             BlueprintName = "Hush"
             ReferencedContainer = "container:Hush.xcodeproj">
