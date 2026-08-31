@@ -11,6 +11,8 @@ struct WorkspaceView: View {
     @State private var compactColumn: NavigationSplitViewColumn = .detail
     @State private var showsInspector = false
     @State private var conversationToDelete: UUID?
+    @State private var conversationToRename: UUID?
+    @State private var renamedTitle = ""
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
@@ -35,6 +37,7 @@ struct WorkspaceView: View {
                     if workspace.page == .chat { ModelPicker() }
                 }
                 ToolbarItemGroup(placement: .primaryAction) {
+                    if workspace.page == .chat { LiveVoiceButton() }
                     Button("New conversation", systemImage: "square.and.pencil") { workspace.newConversation() }
                         .labelStyle(.iconOnly)
                         .help("New conversation (Command-N)")
@@ -63,7 +66,10 @@ struct WorkspaceView: View {
         #endif
         .task { await workspace.bootstrap() }
         .onChange(of: workspace.settings) { workspace.savePreferences() }
-        .onChange(of: workspace.page) { compactColumn = .detail }
+        .onChange(of: workspace.page) {
+            compactColumn = .detail
+            if workspace.page != .chat { workspace.stopLiveInputs() }
+        }
         .hushNotices()
         .confirmationDialog("Delete this conversation?", isPresented: Binding(get: { conversationToDelete != nil }, set: { if !$0 { conversationToDelete = nil } })) {
             Button("Delete conversation", role: .destructive) {
@@ -71,6 +77,14 @@ struct WorkspaceView: View {
                 conversationToDelete = nil
             }
         } message: { Text("This removes the conversation from this device. Export it first if you want to keep a copy.") }
+        .alert("Rename conversation", isPresented: Binding(get: { conversationToRename != nil }, set: { if !$0 { conversationToRename = nil } })) {
+            TextField("Conversation title", text: $renamedTitle)
+            Button("Cancel", role: .cancel) { conversationToRename = nil }
+            Button("Rename") {
+                if let id = conversationToRename { workspace.renameConversation(id, title: renamedTitle) }
+                conversationToRename = nil
+            }
+        }
     }
 
     private var sidebar: some View {
@@ -110,7 +124,7 @@ struct WorkspaceView: View {
                     ForEach(workspace.filteredConversations) { conversation in
                         NavigationLink(value: SidebarSelection.conversation(conversation.id)) {
                             HStack(spacing: 8) {
-                                Image(systemName: conversation.isPinned ? "pin" : "bubble.left")
+                                Image(systemName: conversation.isPinned ? "pin" : conversation.branch != nil ? "arrow.triangle.branch" : "bubble.left")
                                     .font(.system(size: 12)).foregroundStyle(.secondary)
                                 Text(conversation.title).lineLimit(1).font(.system(size: 12))
                                 if workspace.activeConversationID == conversation.id { ProgressView().controlSize(.mini) }
@@ -118,6 +132,13 @@ struct WorkspaceView: View {
                             .padding(.vertical, 3)
                         }
                         .contextMenu {
+                            Button("Rename", systemImage: "pencil") {
+                                renamedTitle = conversation.title
+                                conversationToRename = conversation.id
+                            }
+                            if let branch = conversation.branch, workspace.conversations.contains(where: { $0.id == branch.conversationID }) {
+                                Button("Open original conversation", systemImage: "arrow.uturn.backward") { workspace.selectConversation(branch.conversationID) }
+                            }
                             Button(conversation.isPinned ? "Unpin" : "Pin", systemImage: "pin") { workspace.togglePin(conversation.id) }
                             ShareLink(item: conversation.exportText) { Label("Export conversation", systemImage: "square.and.arrow.up") }
                             Button("Delete", systemImage: "trash", role: .destructive) { conversationToDelete = conversation.id }
@@ -201,6 +222,7 @@ struct QuickChatView: View {
                 HushMark(size: 24)
                 ModelPicker(onDiscover: { openWindow(id: "workspace") })
                 Spacer()
+                LiveVoiceButton()
                 Button("New conversation", systemImage: "square.and.pencil") { workspace.newConversation() }
                 Button("Open workspace", systemImage: "arrow.up.forward.app") {
                     workspace.page = .chat

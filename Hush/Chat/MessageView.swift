@@ -5,6 +5,8 @@ struct MessageView: View {
     let message: ChatMessage
     var isLast: Bool
     @State private var copied = false
+    @State private var showsEditor = false
+    @State private var editedText = ""
 
     var body: some View {
         HStack(alignment: .top) {
@@ -33,7 +35,7 @@ struct MessageView: View {
                     }
                 }
                 if message.role == .assistant && message.status != .generating {
-                    HStack(spacing: 14) {
+                    HStack(spacing: 6) {
                         Button {
                             copyText(message.text)
                             copied = true
@@ -44,14 +46,36 @@ struct MessageView: View {
                                 .disabled(!workspace.canStartResponse)
                         }
                         ShareLink(item: message.text) { actionLabel("Share", symbol: "square.and.arrow.up") }
-                        Spacer()
-                        if let metrics = message.metrics, metrics.outputTokens > 0 {
-                            Text("\(metrics.outputTokens) tokens").monospacedDigit()
-                            if metrics.tokensPerSecond > 0 { Text("\(metrics.tokensPerSecond, specifier: "%.1f") tok/s").monospacedDigit() }
+                        Button { workspace.readAloud(message) } label: {
+                            actionLabel(workspace.speech.messageID == message.id && workspace.speech.isSpeaking ? "Stop reading" : "Read aloud",
+                                symbol: workspace.speech.messageID == message.id && workspace.speech.isSpeaking ? "speaker.slash" : "speaker.wave.2")
                         }
+                        Button { workspace.branchConversation(at: message.id) } label: {
+                            actionLabel("Branch from here", symbol: "arrow.triangle.branch")
+                        }.disabled(!workspace.canStartResponse)
+                        Spacer()
                     }
                     .font(.caption).foregroundStyle(.secondary)
                     .buttonStyle(.plain).labelStyle(.iconOnly)
+                    if let metrics = message.metrics, metrics.outputTokens > 0 {
+                        HStack(spacing: 12) {
+                            Text("\(metrics.outputTokens) tokens")
+                            if metrics.tokensPerSecond > 0 { Text("\(metrics.tokensPerSecond, specifier: "%.1f") tok/s") }
+                        }.font(.caption2).monospacedDigit().foregroundStyle(.tertiary)
+                    }
+                }
+                if message.role == .user {
+                    HStack(spacing: 14) {
+                        Button {
+                            editedText = message.text
+                            showsEditor = true
+                        } label: { actionLabel("Edit and branch", symbol: "pencil") }
+                        Button { workspace.branchConversation(at: message.id) } label: {
+                            actionLabel("Branch from here", symbol: "arrow.triangle.branch")
+                        }
+                    }
+                    .font(.caption).foregroundStyle(.secondary).buttonStyle(.plain).labelStyle(.iconOnly)
+                    .disabled(!workspace.canStartResponse)
                 }
             }
             .padding(message.role == .user ? 18 : 0)
@@ -61,6 +85,36 @@ struct MessageView: View {
             if message.role == .assistant { Spacer(minLength: 0) }
         }
         .frame(maxWidth: .infinity, alignment: message.role == .user ? .trailing : .leading)
+        .sheet(isPresented: $showsEditor) {
+            NavigationStack {
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("Editing starts a new branch. Your original conversation and attachments are kept.")
+                        .font(.callout).foregroundStyle(.secondary)
+                    TextEditor(text: $editedText).font(.body).frame(minHeight: 180)
+                        .padding(12).background(.quaternary.opacity(0.3), in: .rect(cornerRadius: 16))
+                    if !message.attachments.isEmpty {
+                        Label("\(message.attachments.count) original attachments included", systemImage: "paperclip")
+                            .font(.caption).foregroundStyle(.secondary)
+                    }
+                }.padding(24)
+                .navigationTitle("Edit message")
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) { Button("Cancel") { showsEditor = false } }
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button("Send edited branch") {
+                            workspace.editMessage(message.id, text: editedText)
+                            showsEditor = false
+                        }
+                        .disabled(!workspace.canStartResponse || editedText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                        .keyboardShortcut(.return, modifiers: .command)
+                    }
+                }
+            }
+            .frame(minWidth: 300, minHeight: 300)
+            #if os(macOS)
+            .frame(width: 600, height: 420)
+            #endif
+        }
     }
 
     private func actionLabel(_ title: String, symbol: String) -> some View {

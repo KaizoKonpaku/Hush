@@ -8,6 +8,7 @@ struct Conversation: Codable, Identifiable, Equatable, Sendable {
     var isPinned = false
     var modelID = ModelRecord.apple.id
     var messages: [ChatMessage] = []
+    var branch: ConversationBranch?
 
     var searchText: String { ([title] + messages.map(\.text)).joined(separator: "\n") }
     var exportText: String {
@@ -15,6 +16,11 @@ struct Conversation: Codable, Identifiable, Equatable, Sendable {
             "## \(message.role == .user ? "You" : (message.modelName ?? "Hush"))\n\n\(message.text)"
         }.joined(separator: "\n\n")
     }
+}
+
+struct ConversationBranch: Codable, Equatable, Sendable {
+    let conversationID: UUID
+    let messageID: UUID
 }
 
 struct ChatMessage: Codable, Identifiable, Equatable, Sendable {

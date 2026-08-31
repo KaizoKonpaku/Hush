@@ -56,6 +56,29 @@ struct PreferencesView: View {
                     .font(.caption).foregroundStyle(.secondary)
                 Label("No cloud inference, advertising, or analytics", systemImage: "lock.shield").font(.callout)
             }
+            Section("Voice and speech") {
+                Picker("Speaking voice", selection: Binding(
+                    get: { workspace.settings.voiceOptions.voiceIdentifier ?? "" },
+                    set: { workspace.settings.voiceOptions.voiceIdentifier = $0.isEmpty ? nil : $0 })) {
+                    Text("System language").tag("")
+                    ForEach(SpeechOutput.voices, id: \.identifier) { voice in
+                        Text("\(voice.name) (\(voice.language))").tag(voice.identifier)
+                    }
+                }
+                HStack {
+                    Text("Speaking rate")
+                    Slider(value: $workspace.settings.voiceOptions.rate, in: 0.35...0.65, step: 0.025)
+                }
+                HStack {
+                    Text("Pause before sending")
+                    Slider(value: $workspace.settings.voiceOptions.silenceDuration, in: 0.6...2.5, step: 0.1)
+                    Text("\(workspace.settings.voiceOptions.silenceDuration, specifier: "%.1f")s").monospacedDigit()
+                }
+                Toggle("Interrupt by speaking", isOn: $workspace.settings.voiceOptions.allowInterruptions)
+                Toggle("Read typed-chat replies aloud", isOn: $workspace.settings.voiceOptions.speakResponses)
+                Text("Live voice listens and speaks on this device. A pause sends your words to the selected local model. Microphone audio is never recorded to a file. Headphones can improve interruption accuracy in noisy rooms. Changes apply to the next voice session.")
+                    .font(.caption).foregroundStyle(.secondary)
+            }
             Section("Hugging Face") {
                 Text("Public models need no account. For a gated model, accept its license on Hugging Face and add a read token. Tokens stay in this device's Keychain.")
                     .font(.caption).foregroundStyle(.secondary)

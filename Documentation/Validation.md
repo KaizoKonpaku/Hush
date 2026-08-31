@@ -16,20 +16,32 @@ Validated on 2026-08-30 using an Apple M4 Mac mini with 16 GB unified memory, ma
 | tvOS generic device build | Passed |
 | watchOS generic device build | Passed |
 | Real Apple Foundation Models generation on Mac | Passed, nonempty response and reported usage |
+| Real Apple live-frame image understanding on Mac | Passed with an imported 1280 x 720 test frame and an image-history follow-up |
 | Real MLX download and generation on Mac | Passed with `mlx-community/Qwen3-0.6B-4bit` |
 | MLX follow-up cache reuse | Passed with nonzero cached prompt tokens |
 | MLX mid-response cancellation and immediate restart | Passed |
+| Native speech synthesis to streaming transcription | Passed using synthesized PCM, SpeechAnalyzer, SpeechTranscriber, and SpeechDetector |
+| Engine speech playback and resampling | Passed using offline AVAudioEngine rendering; late stopped-response buffers cannot restart playback |
+| Live turn-taking, mute, interruption, and stale callbacks | Passed deterministic session tests with injected speech services |
+| Live-frame sizing, rotation, and cancellation | Passed native pixel-buffer/image processing tests |
+| Editing, branching, and shared attachment retention | Passed, preserving original messages and branch attachment files |
 | Mac Release bundle signing | Local ad-hoc signature with sandbox and hardened runtime; strict verification passed |
 | Mac application launch | Launched from `~/Applications/Hush.app` on the validation Mac |
 | Interactive visual validation | Blocked: the Mac was locked |
 
 The real-model test initially downloaded and checksum-verified the approximately 337 MB Qwen installation. Subsequent tests reuse that verified installation under the temporary `Hush-Model-Validation` directory. Model weights are not checked into Git. The short arithmetic prompts validate the execution path, not model quality or sustained performance.
 
-The full opt-in suite passed **30 tests in five suites**, including both real-model tests. Automated coverage includes conversation identity during streaming, duplicate-submit exclusion, partial-response cancellation, retry normalization, draft restoration, atomic persistence, stale-write protection, corrupt-library preservation, fresh history, backup exclusion, attachment cleanup, deletion while history is disabled, failed-save safety, model-removal/generation exclusion, model path traversal and symlink rejection, checksums, fully staged download reuse, Core AI bundle requirements, and Watch packet validation.
+The full opt-in suite passed **53 tests in 11 suites**, including three real-model tests and the native speech round trip. Existing coverage includes conversation identity during streaming, duplicate-submit exclusion, partial-response cancellation, retry normalization, draft restoration, atomic persistence, stale-write protection, corrupt-library preservation, fresh history, backup exclusion, attachment cleanup, deletion while history is disabled, failed-save safety, model-removal/generation exclusion, model path traversal and symlink rejection, checksums, fully staged download reuse, Core AI bundle requirements, and Watch packet validation.
+
+New coverage includes volatile transcript replacement, consumed-turn suppression, pre-mute audio boundaries, sentence-wise speech chunking, code/reasoning omission, echo filtering, pause-to-submit, barge-in cancellation, stopped-session callbacks, current-schema voice defaults, message editing/branching, shared attachment retention, bounded immutable audio conversion, overload failure, image downsampling/orientation, stopped capture outputs, and invalid frame rejection.
+
+The native speech test synthesized 149,688 frames and recovered the expected spoken words through the on-device transcriber. Playback/resampling was separately checked by rendering the audio engine offline. These tests neither record the microphone nor play audio through the speakers; they do not establish real-room echo cancellation or acoustic interruption quality.
+
+The image test found and fixed a real OS 27 beta integration issue: `SystemLanguageModel.tokenCount` rejects prompts containing images even though model generation accepts them. Hush now tokenizes text separately and reserves 2,048 tokens per bounded image for context planning. Full images still reach the model, completed usage comes from the engine, and both initial vision generation and a follow-up with image history pass.
 
 ## Reproduce
 
-Normal tests do not download or run models. Use the main `Hush` scheme:
+Normal tests do not download/run language models or install speech assets. Use the main `Hush` scheme:
 
 ```sh
 DEVELOPER_DIR=/Applications/Xcode-beta.app/Contents/Developer xcodebuild \
@@ -40,7 +52,7 @@ DEVELOPER_DIR=/Applications/Xcode-beta.app/Contents/Developer xcodebuild \
   -skipPackagePluginValidation test CODE_SIGNING_ALLOWED=NO
 ```
 
-To opt into the real-model tests as well, substitute `-scheme HushModelValidation`. The Apple test is enabled only when the OS reports its local model available. The MLX test downloads its small test model on first use, then checks generation, follow-up cache reuse, cancellation, restart, and unload.
+To opt into the real-model and native speech tests, substitute `-scheme HushModelValidation`. Apple tests are enabled only when the OS reports its local model available. The MLX test downloads its small test model on first use, then checks generation, follow-up cache reuse, cancellation, restart, and unload. The native speech test requires SpeechTranscriber support and may install Apple's English speech assets.
 
 For platform builds, use the same command structure with `build` instead of `test`, the scheme/destination below, and a distinct derived-data directory per platform:
 
@@ -55,23 +67,24 @@ For platform builds, use the same command structure with `build` instead of `tes
 
 For optimized Mac builds, select `-configuration Release`. Review/trust the pinned MLX CUDA plugin before using the per-command plugin-validation flag; no global setting is disabled. See the [README](../README.md).
 
-Local logs and `.xcresult` bundles are retained under ignored `build/` directories. `test-final.log` records the full opt-in suite. Device build logs use `build-device.log`, `build-simulator.log`, `build-vision.log`, `build-tv.log`, and `build-watch.log`; `build-macos-release.log` records Release compilation.
+Local logs and `.xcresult` bundles are retained under ignored `build/` directories. `test-live-final.log` records the full 53-test opt-in suite. Device build logs use `build-live-device.log`, `build-live-simulator.log`, `build-live-vision.log`, `build-live-tv.log`, and `build-live-watch.log`; `build-live-release.log` records Release compilation.
 
 ## Remaining QA
 
 - Unlock the Mac and inspect the actual glass appearance, light/dark modes, native focus/press feedback, and Reduce Motion. Resize both windows repeatedly, grow/shrink the composer, invoke Command-comma, switch models, open attachments, cancel a response, and navigate during streaming. No visual result is claimed while the screen is inaccessible.
 - Test iPhone/iPad touch targets, keyboard avoidance, Dynamic Type, rotation, Files permissions, and background/foreground behavior on physical devices. The physical iPhone was unavailable during this run.
 - Validate imported Core AI inference with real compiled language and vision bundles. Import rejection and SDK integration were tested; actual Core AI bundle inference was not.
-- Exercise image understanding, real PDFs, microphone permissions, speech-asset installation, and dictation with representative user files and audio. Those paths compile but were not interactively verified.
+- Exercise the Live toolbar action, microphone/camera consent, native screen picker, mute/unmute, spoken barge-in, speaker/headphone/Bluetooth routes, camera flipping, and changing screen sources. Test actual microphone speech and acoustic echo cancellation in a real room. These interactive checks were blocked by the locked Mac.
+- Validate real PDFs and varied user images; the automated image test uses a synthetic color frame. Test speech-asset installation with unsupported/offline language conditions, long sessions, backgrounding, idle/thermal shutdown, and accessibility feedback. Capture is latest-frame-per-question context, not continuous video inference.
 - Test paired iPhone/Watch streaming, loss of reachability, cancellation, and background expiration. Watch protocol tests are not a substitute for paired-device testing.
 - Test tvOS remote focus, inference performance, model storage eviction, and large-screen layout on hardware. Vision requires spatial UI and input testing on a headset. Those targets were compile-validated, not run on physical hardware.
 - Complete distribution signing/provisioning, final platform icon packaging, model-license review, accessibility testing, and App Store/notarization validation before treating this as a distributable release.
 
 ## Known Constraints
 
-The current beta's Core AI framework is not in the simulator SDK. Apple SystemLanguageModel does not provide the same on-device runtime on TV or Watch. Watch generation deliberately runs on the paired iPhone and never claims Watch-local inference.
+The current beta's Core AI and ScreenCaptureKit frameworks are not in the simulator SDK. Screen sharing uses a native content picker only on supported physical workspace devices; direct camera capture is not offered on visionOS. Apple SystemLanguageModel does not provide the same on-device runtime on TV or Watch. Watch generation deliberately runs on the paired iPhone and never claims Watch-local inference. TV and Watch do not expose the workspace's live voice/capture UI.
 
-The reviewed `swift-huggingface` platform fix is still an unmerged upstream revision. The pinned MLX dependency emits C++ language-extension warnings; they were not suppressed or patched in the dependency checkout. The locked-session test host also logged App Intents `linkd` registration connection failures while the tests themselves passed. Shortcuts still need interactive validation.
+The reviewed `swift-huggingface` platform fix is still an unmerged upstream revision. The pinned MLX dependency emits C++/Metal kernel warnings; they were not suppressed or patched in the dependency checkout. The locked-session test host also logged App Intents `linkd` registration and native audio-service teardown messages while the tests themselves passed. Shortcuts still need interactive validation. The OS 27 AnalyzerInputConverter requires signed 16-bit analyzer buffers; Hush checks this before entering the framework, with a regression test for invalid formats.
 
 The locally installed Mac app is ad-hoc signed for development, not notarized for distribution. Build success and a successful launch do not establish complete cross-platform runtime or visual correctness.
 

@@ -8,6 +8,18 @@ actor AttachmentImporter {
     let root: URL
     init(root: URL) { self.root = root }
 
+    func importCapturedImage(_ data: Data, name: String) throws -> ChatAttachment {
+        guard data.count <= 8 * 1024 * 1024,
+              let source = CGImageSourceCreateWithData(data as CFData, nil),
+              CGImageSourceGetCount(source) == 1 else {
+            throw HushError.message("This live frame could not be prepared.")
+        }
+        try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
+        let filename = UUID().uuidString + ".jpg"
+        try data.write(to: root.appending(path: filename), options: .atomic)
+        return ChatAttachment(name: name, kind: .image, filename: filename, byteCount: Int64(data.count))
+    }
+
     func importFile(_ source: URL) async throws -> ChatAttachment {
         let access = source.startAccessingSecurityScopedResource()
         defer { if access { source.stopAccessingSecurityScopedResource() } }

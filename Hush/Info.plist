@@ -19,7 +19,9 @@
   <key>CFBundleVersion</key>
   <string>$(CURRENT_PROJECT_VERSION)</string>
   <key>NSMicrophoneUsageDescription</key>
-  <string>Transcribe your voice on this device when you press the microphone.</string>
+  <string>Use your microphone for live on-device conversations and dictation only when you start them.</string>
+  <key>NSCameraUsageDescription</key>
+  <string>Show a live camera preview and include the current frame when you ask your local model a question.</string>
   <key>NSSpeechRecognitionUsageDescription</key>
   <string>Transcribe audio locally. Audio is not sent to a cloud provider.</string>
 </dict>

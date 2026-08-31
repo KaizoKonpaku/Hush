@@ -8,9 +8,12 @@ This is the 2.0 rewrite. It starts with a fresh library and does not import conv
 
 - A Together-inspired native workspace with adaptive navigation, semantic teal, SF Symbols, and glass reserved for controls. The bottom composer has a rounded field and circular attach/send controls, without a second background panel.
 - A Mac floating Quick Chat window, menu bar access, native Settings, and keyboard commands. SwiftUI owns window layout; there is no AppKit frame-measurement/resize loop.
-- Streaming conversations with cancellation, retry, per-conversation drafts, pinning, search, and text export. Generation remains attached to its original conversation when you navigate elsewhere.
+- Streaming conversations with cancellation, retry, per-conversation drafts, renaming, pinning, search, and text export. Edit a user message into a new branch, or branch from any response without modifying the original conversation.
 - Hugging Face model discovery, model cards, licenses, revision-pinned downloads, integrity verification, and a local model library. Public models need no token; gated repositories can use a Keychain-stored read token.
-- Images, PDFs, and text files as local context. Vision models receive images; text-only models can use extracted image text. SpeechAnalyzer provides explicit, on-device dictation with a 60-second recording limit.
+- Images, PDFs, and text files as local context. Vision models receive images; text-only models can use extracted image text.
+- Live on-device dictation and hands-free voice conversations with automatic turn submission, streamed spoken responses, interruption, mute, and end controls. OS 27 SpeechAnalyzer and native speech synthesis run locally; no audio files or cloud voice service.
+- Read-aloud actions with pause/stop, an installed-voice picker, speaking rate, configurable turn-taking pause, and optional automatic reading of typed-chat replies.
+- Live camera context on Mac/iPhone/iPad and native screen sharing on supported physical workspace devices. Preview frames stay in memory; the latest frame is attached when you ask a question.
 - Real token counts, first-token latency, response throughput, MLX allocations, hardware information, and memory policy controls. No simulated usage meters or benchmark scores.
 
 ## Platforms
@@ -26,6 +29,18 @@ Every target requires **27.0 or newer**. Hardware, model architecture, language,
 | watchOS | Short questions and streamed answers | Paired iPhone's on-device Apple model, **not** inference on Watch |
 
 Apple does not expose identical model or UI capabilities on every platform. The Watch companion says where inference runs and does not copy the phone's conversation history. TV conversations are session-only.
+
+## Live Voice and Visual Context
+
+Start **Live voice** from the workspace or Quick Chat toolbar. Speak, then pause to submit a turn to the selected local model. Responses start speaking at sentence boundaries while generation continues. Speak again to interrupt, use the microphone to mute/unmute, or end the session from the toolbar or live status row. The plain microphone action outside Live mode is streaming dictation into the composer.
+
+Use the circular **+** menu for files, **Start live camera**, or **Share screen live**. Screen sharing always uses Apple's content picker, never an automatically chosen display. The preview can be expanded, the iPhone camera can be flipped, and visual sharing can be stopped independently. Choose a vision-capable model before submitting a question with live context.
+
+Live voice is a local speech-to-text, language-model, and text-to-speech pipeline, not an end-to-end audio model. It depends on supported speech languages and installed OS assets. Live replies are capped at 384 output tokens for conversational pacing. Dictation is bounded to five minutes; a live session ends after two minutes without a question. Hardware audio-route changes end the session rather than silently switching microphones.
+
+Live previews sample up to five frames per second, downsample to a 1280-pixel long edge, and retain only the newest pending frame. The model sees the snapshot submitted with each question, not continuous video. Screen/system audio is not captured. Leaving chat, changing conversations/models, mobile backgrounding, or ending the session stops live inputs. Direct camera access is not exposed on visionOS. Watch and TV retain their separate companion/remote experiences; they do not expose this workspace voice/capture mode.
+
+Use the pencil beside a user message to **edit and branch**. Previous answers remain in the original conversation. The branch action beside a response creates a new conversation through that point; branches share attachment references safely. A branch's sidebar menu can return to the original conversation.
 
 ## Models and Hardware
 
@@ -48,12 +63,12 @@ Open `Hush.xcodeproj` and choose a scheme:
 | Scheme | Purpose |
 | --- | --- |
 | `Hush` | macOS, physical iOS/iPadOS, and physical visionOS |
-| `HushSimulator` | iOS / visionOS simulator UI and MLX build; no Core AI framework |
+| `HushSimulator` | iOS / visionOS simulator UI and MLX build; no Core AI or ScreenCaptureKit framework |
 | `HushTV` | Apple TV |
 | `HushWatch` | Watch companion, also embedded in the iOS app |
 | `HushModelValidation` | Opt-in tests that exercise real models on Mac |
 
-The installed beta's simulator SDK does not contain Core AI. The separate simulator target keeps that missing framework out of its dependency graph; it is not an older-OS fallback.
+The installed beta's simulator SDK does not contain Core AI or ScreenCaptureKit. The separate simulator target keeps Core AI out of its dependency graph, and live screen sharing is disabled when its framework is absent. These are SDK capability boundaries, not older-OS fallbacks.
 
 Unsigned local validation:
 
@@ -94,3 +109,7 @@ The dependency lockfile is intentional. In particular, `swift-huggingface` is pi
 - [Apple Core AI model recipes](https://github.com/apple/coreai-models)
 - [MLX Swift language models](https://github.com/ml-explore/mlx-swift-lm)
 - [Hugging Face Hub API](https://huggingface.co/docs/hub/api)
+- [OS 27 immutable audio taps](https://developer.apple.com/documentation/avfaudio/avaudionode/installaudiotap(onbus:buffersize:format:tapprovider:))
+- [OS 27 AnalyzerInputConverter](https://developer.apple.com/documentation/speech/analyzerinputconverter)
+- [SpeechAnalyzer](https://developer.apple.com/documentation/speech/speechanalyzer)
+- [Native content-sharing picker](https://developer.apple.com/documentation/screencapturekit/sccontentsharingpicker)

@@ -81,15 +81,19 @@ actor InferenceRuntime: InferenceServing {
         let outputLimit = min(request.settings.maximumOutputTokens, max(64, contextLimit / 2))
         let availableInput = contextLimit - outputLimit - 128
         var entries = try Self.entries(history, request: request)
+        let textPrompt = try Self.makePrompt(request, includingImages: false)
         func estimatedCount(_ entries: [Transcript.Entry], history: [ChatMessage], tokenizer: (any MLXLMCommon.Tokenizer)?) async throws -> Int {
+            let imageCount = request.attachments.filter { $0.kind == .image }.count
+                + history.flatMap(\.attachments).filter { $0.kind == .image }.count
             if request.model.engine == .apple {
-                return try await SystemLanguageModel.default.tokenCount(for: entries)
-                    + SystemLanguageModel.default.tokenCount(for: prompt)
+                // OS 27's tokenizer rejects image segments even though generation supports them.
+                // Imported images are bounded to 1536px; reserve space rather than dropping vision.
+                let textEntries = try Self.entries(history, request: request, includingImages: false)
+                return try await SystemLanguageModel.default.tokenCount(for: textEntries)
+                    + SystemLanguageModel.default.tokenCount(for: textPrompt) + imageCount * 2048
             }
             let text = request.settings.instructions + history.map(Self.referenceText).joined(separator: "\n")
                 + request.prompt + request.attachments.compactMap(\.extractedText).joined(separator: "\n")
-            let imageCount = request.attachments.filter { $0.kind == .image }.count
-                + history.flatMap(\.attachments).filter { $0.kind == .image }.count
             return (tokenizer?.encode(text: text).count ?? text.utf8.count) + entries.count * 16 + imageCount * 2048 + 64
         }
         while try await estimatedCount(entries, history: history, tokenizer: tokenizer) > availableInput {
@@ -181,7 +185,7 @@ actor InferenceRuntime: InferenceServing {
         }
     }
 
-    private static func makePrompt(_ request: GenerationRequest) throws -> Prompt {
+    private static func makePrompt(_ request: GenerationRequest, includingImages: Bool = true) throws -> Prompt {
         let images = try request.attachments.filter { $0.kind == .image }.compactMap { attachment -> URL? in
             if !request.model.supportsVision {
                 guard let text = attachment.extractedText, !text.isEmpty else {
@@ -198,17 +202,19 @@ actor InferenceRuntime: InferenceServing {
                     "Reference attachment: \(attachment.name)\n<reference>\n\(text)\n</reference>"
                 }
             }
-            for image in images { Attachment(imageURL: image) }
+            if includingImages {
+                for image in images { Attachment(imageURL: image) }
+            }
         }
     }
 
-    private static func entries(_ messages: [ChatMessage], request: GenerationRequest) throws -> [Transcript.Entry] {
+    private static func entries(_ messages: [ChatMessage], request: GenerationRequest, includingImages: Bool = true) throws -> [Transcript.Entry] {
         var entries: [Transcript.Entry] = [.instructions(.init(
             segments: [.text(.init(content: request.settings.instructions))], toolDefinitions: []))]
         for message in messages {
             guard !message.text.isEmpty else { continue }
             var segments: [Transcript.Segment] = [.text(.init(content: referenceText(message)))]
-            if request.model.supportsVision {
+            if request.model.supportsVision && includingImages {
                 for image in message.attachments where image.kind == .image {
                     let url = try ModelPath.resolve(image.filename, under: request.attachmentDirectory)
                     if FileManager.default.fileExists(atPath: url.path) {

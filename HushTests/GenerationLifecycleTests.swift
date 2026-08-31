@@ -188,15 +188,17 @@ struct GenerationLifecycleTests {
     }
 }
 
-private actor ControlledRuntime: InferenceServing {
+actor ControlledRuntime: InferenceServing {
     private var continuation: AsyncStream<GenerationEvent>.Continuation?
     var hasStarted = false
     var requests = 0
+    var lastRequest: GenerationRequest?
     var unloadStarted = false
     private var unloadIsBlocked = false
 
     func generate(_ request: GenerationRequest, event: @Sendable @escaping (GenerationEvent) async -> Void) async throws {
         requests += 1
+        lastRequest = request
         let (stream, continuation) = AsyncStream<GenerationEvent>.makeStream()
         self.continuation = continuation
         hasStarted = true

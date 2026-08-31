@@ -24,6 +24,7 @@ Views observe state and submit intent. Engine implementations do not own UI stat
 2. Stream events carry the original conversation, response, and job identity. Navigation cannot redirect tokens into a new chat.
 3. Context contains alternating completed user/assistant exchanges. Failed or unanswered exchanges are omitted; retry replaces the prior answer rather than adding a second assistant turn.
 4. Input is token-budgeted before generation. Old exchanges are dropped together, with a visible status update. MLX/Core AI use a conservative 32K application context cap; images use an explicit estimate where exact counting is unavailable. Engines still enforce their own limits.
+   Apple text is counted with the system tokenizer. The tested OS 27 beta rejects image segments in token-counting requests, so bounded image attachments reserve 2,048 tokens each while the full images still reach generation. This estimate is not reported as actual usage; completed metrics come from the session.
 5. MLX loads only a local verified directory. Its chat cache is reused only for matching conversation, settings, and exact expected history.
 6. Cancellation preserves delivered partial text, drains MLX's producer, and invalidates the partial cache. Unload cannot race a new generation. A narrowly scoped `nonisolated(unsafe)` alias bridges upstream's non-Sendable `ChatSession.synchronize`; the actor owns the session exclusively and keeps its generation lock until the producer drains.
 7. Completed metrics come from actual engine usage and measured elapsed time. Throughput excludes time to the first token but remains an application-level measurement, not a standardized benchmark. MLX allocation figures do not pretend to describe Foundation Models or Core AI memory.
@@ -52,6 +53,24 @@ The composer is a single flexible layout: circular attach, a growing rounded tex
 
 Mac Quick Chat is a native floating `Window`; discovery actions explicitly open the main workspace. Errors follow the active window using the system's appearance state, including the separate Settings scene. New Conversation is a toolbar SF Symbol. Standard Settings and keyboard commands replace custom keyboard interception. Reduce Motion is respected; primary reading/composer text scales with Dynamic Type. Vision uses `glassBackgroundEffect` and native spatial controls because its SDK does not expose the same Liquid Glass modifiers as iOS/macOS.
 
+## Live Input and Speech
+
+`VoiceCapture` owns the microphone, OS 27 immutable audio tap, SpeechAnalyzer, progressive transcription, and audio-route teardown. `SpeechAudioBridge` converts buffers with the OS 27 `AnalyzerInputConverter` into the analyzer's signed 16-bit format. Converter state is mutex-protected. Its bounded stream reports overload instead of silently dropping words. Raw microphone audio never goes to a file.
+
+`LiveVoiceSession` owns turn-taking, mute, interruption, session identity, and the endpoint timer. `SpeechTranscript` replaces volatile results and rejects late segments from already submitted or muted audio. Every pending turn and spoken response has an identifier; ending or interrupting a session invalidates callbacks before cancelling work. New voice requests wait for the previous inference task to drain.
+
+`SpeechOutput` queues text at sentence boundaries, strips code/hidden reasoning from spoken output, and supports native installed voices and read-aloud controls. In live mode, synthesized PCM plays through `VoicePlayback` in the same voice-processing audio engine as the microphone, providing the acoustic echo-cancellation reference. Only one utterance is rendered ahead, not an entire response's audio. Interruption stops playback immediately; late PCM callbacks cannot restart the player. Real-room acoustic performance still requires physical audio testing.
+
+`LiveCapture` owns one explicitly chosen camera or screen source. A per-presentation observer and per-stream identity reject stale picker/frame/error callbacks. ScreenCaptureKit selection is system-mediated, with screen and microphone audio disabled. Camera configuration runs in an actor and does not reconfigure the voice audio session. Frames are orientation-corrected and downsampled off the main actor, limited to five samples per second, and delivered through a newest-one buffer. Only a question's selected frame is materialized in attachment storage. This is snapshot context, not continuous video inference.
+
+Live inputs stop on conversation/model navigation, leaving chat, mobile backgrounding, and critical thermal state. No background broadcast extension, screen-recording file, arbitrary display auto-selection, or automatic microphone start is introduced. Simulator builds disable screen capture because the beta simulator SDK lacks ScreenCaptureKit; visionOS has no general camera capture path in this app.
+
+## Conversation Branches
+
+An edited user turn creates a new conversation with the history before that turn and a fresh edited message, then runs normal inference. The original remains unchanged. A branch from an assistant turn copies only the prefix through that answer. Optional parent IDs preserve provenance without requiring the parent to remain present. Attachments use shared managed-file references and are removed only after the last live or persisted reference is gone and the archive deletion is saved.
+
+Optional voice preferences and branch provenance extend the current version-2 local schema; this does not add an importer for the legacy application.
+
 ## Dependencies and Limits
 
 `Package.resolved` is part of the source of truth. Notable pins:
@@ -68,4 +87,4 @@ The direct MLX chat adapter intentionally avoids the upstream Foundation Models 
 
 Apple/model runtimes schedule hardware. Memory policy is an MLX allocation allowance plus conservative admission estimates, not CPU/GPU utilization control. Thermal checks and a system reserve stay enabled. Model quality, license, architecture support, peak working set, and platform asset readiness remain real constraints.
 
-There is no GGUF/llama.cpp engine, training/fine-tuning UI, image generation, autonomous tool runner, cross-device chat sync, global hotkey daemon, or old cloud/live/stealth implementation. Platform-specific capabilities and remaining QA are recorded in [Validation](Validation.md), not hidden behind inactive controls.
+There is no GGUF/llama.cpp engine, training/fine-tuning UI, image generation, autonomous tool runner, cross-device chat sync, global hotkey daemon, or old cloud/stealth implementation. New local voice/capture is independent of that deleted architecture. Platform-specific capabilities and remaining QA are recorded in [Validation](Validation.md).

@@ -54,7 +54,7 @@ struct ChatView: View {
             }
         }
         .onChange(of: workspace.composerFocusID) { composerFocused = true }
-        .onDisappear { workspace.voice.cancel() }
+        .onDisappear { workspace.stopLiveInputs() }
         .dropDestination(for: URL.self) { urls, _ in
             Task { await workspace.addAttachments(urls) }
             return !urls.isEmpty
@@ -133,6 +133,9 @@ struct ChatView: View {
     private var composer: some View {
         @Bindable var workspace = workspace
         return VStack(spacing: 10) {
+            if workspace.capture.isActive { LiveCaptureBar() }
+            if workspace.liveVoice.isActive { LiveVoiceBar() }
+            else if workspace.speech.isSpeaking { SpeechPlaybackBar() }
             if !workspace.attachments.isEmpty {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 8) {
@@ -153,7 +156,7 @@ struct ChatView: View {
                     }.padding(.horizontal, 4)
                 }
             }
-            if workspace.isGenerating || workspace.isImporting || workspace.voice.isActive {
+            if !workspace.liveVoice.isActive && (workspace.isGenerating || workspace.isImporting || workspace.voice.isActive) {
                 HStack(spacing: 7) {
                     if workspace.voice.phase == .recording {
                         Circle().fill(.red).frame(width: 6, height: 6)
@@ -165,11 +168,23 @@ struct ChatView: View {
             }
             NativeGlassGroup(spacing: 12) {
                 HStack(alignment: .bottom, spacing: 12) {
-                    Button { showsAttachmentPicker = true } label: {
+                    Menu {
+                        Button("Attach files or images", systemImage: "paperclip") { showsAttachmentPicker = true }
+                        Divider()
+                        #if os(macOS) || os(iOS)
+                        Button("Start live camera", systemImage: "video") { workspace.capture.startCamera() }
+                        #endif
+                        Button("Share screen live", systemImage: "rectangle.inset.filled") { workspace.capture.startScreen() }
+                            .disabled(!LiveCapture.supportsScreenCapture)
+                        if workspace.capture.isActive {
+                            Button("Stop visual sharing", systemImage: "xmark.circle") { workspace.capture.stop() }
+                        }
+                    } label: {
                         Image(systemName: "plus").font(.system(size: 19, weight: .regular)).frame(width: 28, height: 28)
                     }
+                    .menuIndicator(.hidden)
                     .nativeGlassButton().buttonBorderShape(.circle).controlSize(.large)
-                    .accessibilityLabel("Attach a file or image").help("Attach a file or image")
+                    .accessibilityLabel("Attach files, use camera, or share screen").help("Files, live camera, and screen sharing")
                     .disabled(!workspace.isReady || workspace.isImporting)
 
                     HStack(alignment: .bottom, spacing: 4) {
@@ -179,15 +194,16 @@ struct ChatView: View {
                             .focused($composerFocused)
                             .onSubmit { workspace.send() }
                             .accessibilityLabel("Message Hush")
+                            .disabled(workspace.voice.isDictating || workspace.isImporting)
                         Button { workspace.toggleDictation() } label: {
-                            Image(systemName: workspace.voice.isActive ? "waveform" : "mic")
+                            Image(systemName: workspace.liveVoice.isMuted ? "mic.slash" : workspace.voice.isActive ? "waveform" : "mic")
                                 .font(.system(size: 16)).frame(width: 44, height: 52)
                                 .foregroundStyle(workspace.voice.isActive ? .red : .secondary)
                         }
                         .buttonStyle(.plain).padding(.trailing, 5)
-                        .disabled(workspace.isGenerating || workspace.isImporting)
-                        .accessibilityLabel(workspace.voice.isActive ? "Finish dictation" : "Dictate on device")
-                        .help("Dictate on this device. Language assets may download on first use.")
+                        .disabled(!workspace.liveVoice.isActive && (workspace.isGenerating || workspace.isImporting))
+                        .accessibilityLabel(workspace.liveVoice.isActive ? (workspace.liveVoice.isMuted ? "Unmute microphone" : "Mute microphone") : workspace.voice.isActive ? "Finish dictation" : "Dictate on device")
+                        .help("Live on-device dictation. Language assets may download on first use.")
                     }
                     .frame(minHeight: 52)
                     .nativeGlass(in: .rect(cornerRadius: 27))

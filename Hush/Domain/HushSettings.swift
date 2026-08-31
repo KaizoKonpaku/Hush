@@ -24,11 +24,31 @@ struct HushSettings: Codable, Equatable, Sendable {
     var appearance = "system"
     var keepHistory = true
     var unloadWhenIdle = true
+    var voice: VoicePreferences?
+
+    var voiceOptions: VoicePreferences {
+        get { voice ?? VoicePreferences() }
+        set { voice = newValue }
+    }
 
     mutating func validate() {
         temperature = temperature.isFinite ? min(2, max(0, temperature)) : 0.7
         maximumOutputTokens = min(8192, max(64, maximumOutputTokens))
         instructions = String(instructions.prefix(8000))
         if !["system", "light", "dark"].contains(appearance) { appearance = "system" }
+        voice?.validate()
+    }
+}
+
+struct VoicePreferences: Codable, Equatable, Sendable {
+    var voiceIdentifier: String?
+    var rate = 0.5
+    var silenceDuration = 1.1
+    var speakResponses = false
+    var allowInterruptions = true
+
+    mutating func validate() {
+        rate = rate.isFinite ? min(0.65, max(0.35, rate)) : 0.5
+        silenceDuration = silenceDuration.isFinite ? min(2.5, max(0.6, silenceDuration)) : 1.1
     }
 }

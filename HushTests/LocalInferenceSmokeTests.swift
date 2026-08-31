@@ -1,6 +1,9 @@
 import Foundation
 import FoundationModels
+import CoreGraphics
+import ImageIO
 import Testing
+import UniformTypeIdentifiers
 @testable import Hush
 
 @Suite(.serialized)
@@ -94,6 +97,48 @@ struct LocalInferenceSmokeTests {
         #expect(await !events.text.isEmpty)
         #expect(await events.metrics?.outputTokens ?? 0 > 0)
         print("Apple Foundation Models on-device generation passed.")
+        await runtime.unload()
+    }
+
+    @Test(.enabled(if: ProcessInfo.processInfo.environment["HUSH_RUN_MODEL_SMOKE"] == "1"
+                   && SystemLanguageModel.default.isAvailable), .timeLimit(.minutes(3)))
+    func appleVisionUnderstandsAnImportedLiveFrame() async throws {
+        let root = FileManager.default.temporaryDirectory.appending(path: UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: root) }
+        let context = try #require(CGContext(data: nil, width: 1280, height: 720, bitsPerComponent: 8,
+            bytesPerRow: 1280 * 4, space: CGColorSpaceCreateDeviceRGB(),
+            bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue))
+        context.setFillColor(CGColor(red: 1, green: 0, blue: 0, alpha: 1))
+        context.fill(CGRect(x: 0, y: 0, width: 1280, height: 720))
+        let image = try #require(context.makeImage())
+        let bytes = NSMutableData()
+        let destination = try #require(CGImageDestinationCreateWithData(bytes, UTType.jpeg.identifier as CFString, 1, nil))
+        CGImageDestinationAddImage(destination, image, nil)
+        #expect(CGImageDestinationFinalize(destination))
+        let directory = root.appending(path: "Attachments")
+        let attachment = try await AttachmentImporter(root: directory).importCapturedImage(bytes as Data, name: "Test live frame")
+        var settings = HushSettings()
+        settings.maximumOutputTokens = 64
+        let runtime = InferenceRuntime()
+        let events = SmokeEvents()
+        let request = GenerationRequest(conversationID: UUID(), model: .apple, modelDirectory: nil,
+            history: [], prompt: "What is the main color of this image? Answer with the color name.",
+            attachments: [attachment], attachmentDirectory: directory, settings: settings,
+            memoryBudget: 4 * 1024 * 1024 * 1024)
+        try await runtime.generate(request) { await events.receive($0) }
+        #expect(await events.text.localizedCaseInsensitiveContains("red"))
+        #expect(await events.metrics?.outputTokens ?? 0 > 0)
+        print("Apple live-frame vision passed: \(await events.text)")
+        let followUp = SmokeEvents()
+        let continuation = GenerationRequest(conversationID: request.conversationID, model: .apple, modelDirectory: nil,
+            history: [ChatMessage(role: .user, text: request.prompt, attachments: [attachment]),
+                      ChatMessage(role: .assistant, text: await events.text)],
+            prompt: "What color was the image in my previous message? Answer with the color name.",
+            attachments: [], attachmentDirectory: directory, settings: settings, memoryBudget: request.memoryBudget)
+        try await runtime.generate(continuation) { await followUp.receive($0) }
+        #expect(await followUp.text.localizedCaseInsensitiveContains("red"))
+        #expect(await followUp.metrics?.outputTokens ?? 0 > 0)
+        print("Apple vision follow-up with image history passed.")
         await runtime.unload()
     }
 }

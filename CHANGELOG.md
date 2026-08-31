@@ -1,5 +1,15 @@
 # Changelog
 
+## Live Features
+
+- Replaced record-then-transcribe dictation with OS 27 streaming speech input.
+- Added local hands-free voice, sentence-streamed spoken replies, interruption, mute/end controls, and voice/rate/turn-pause preferences.
+- Added per-message read aloud, pause/resume/stop, and optional automatic reading of typed responses.
+- Added native live camera and ScreenCaptureKit context with explicit selection, visible previews, bounded frame processing, and per-question snapshots.
+- Added message editing into preserved branches, branch-from-response, conversation renaming, and return-to-original navigation.
+- Added regression tests for turn identity, stale transcripts, mute, interruption, audio conversion/playback, captured-frame sizing/orientation, and branch persistence; added a real native speech synthesis/transcription round-trip test.
+- Kept the existing workspace and circular composer design. Screen capture is unavailable in the current simulator SDK; camera and voice hardware flows still require interactive device QA.
+
 ## 2.0 - OS 27 Rewrite
 
 ### Added

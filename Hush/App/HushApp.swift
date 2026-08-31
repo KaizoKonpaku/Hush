@@ -64,6 +64,8 @@ struct HushApp: App {
             Divider()
             Text(workspace.isGenerating ? "Generating on device" : "On-device intelligence")
             if workspace.isGenerating { Button("Stop Response") { workspace.stop() } }
+            if workspace.liveVoice.isActive { Button("End Live Voice") { workspace.stopLiveInputs() } }
+            if workspace.capture.isActive { Button("Stop Visual Sharing") { workspace.capture.stop() } }
             Divider()
             Button("Quit Hush") { NSApplication.shared.terminate(nil) }
         }
