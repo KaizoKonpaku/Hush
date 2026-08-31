@@ -1,505 +1,346 @@
 // !$*UTF8*$!
 {
 	archiveVersion = 1;
-	classes = {
-	};
+	classes = {};
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		27000000000000000000010A = {isa = PBXBuildFile; fileRef = 270000000000000000000109; };
+		27000000000000000000010C = {isa = PBXBuildFile; fileRef = 270000000000000000000101; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy,); }; };
+		270000000000000000000111 = {isa = PBXBuildFile; fileRef = 270000000000000000000101; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy,); }; };
+		2700000000000000000000B6 = {isa = PBXBuildFile; productRef = 2700000000000000000000A6; };
+		270000000000000000000091 = {isa = PBXBuildFile; fileRef = 270000000000000000000081; };
+		270000000000000000000092 = {isa = PBXBuildFile; fileRef = 270000000000000000000082; };
+		270000000000000000000093 = {isa = PBXBuildFile; fileRef = 270000000000000000000083; };
+		270000000000000000000094 = {isa = PBXBuildFile; fileRef = 270000000000000000000084; };
+		270000000000000000000095 = {isa = PBXBuildFile; fileRef = 270000000000000000000085; };
+		270000000000000000000096 = {isa = PBXBuildFile; fileRef = 270000000000000000000086; };
+		270000000000000000000097 = {isa = PBXBuildFile; fileRef = 270000000000000000000087; };
+		270000000000000000000098 = {isa = PBXBuildFile; fileRef = 270000000000000000000088; };
+		270000000000000000000099 = {isa = PBXBuildFile; fileRef = 270000000000000000000089; };
+		27000000000000000000009A = {isa = PBXBuildFile; fileRef = 27000000000000000000008A; };
+		27000000000000000000009B = {isa = PBXBuildFile; fileRef = 27000000000000000000008B; };
+		2700000000000000000000B1 = {isa = PBXBuildFile; productRef = 2700000000000000000000A1; };
+		2700000000000000000000B2 = {isa = PBXBuildFile; productRef = 2700000000000000000000A2; };
+		2700000000000000000000B3 = {isa = PBXBuildFile; productRef = 2700000000000000000000A3; };
+		2700000000000000000000B4 = {isa = PBXBuildFile; productRef = 2700000000000000000000A4; };
+		2700000000000000000000B5 = {isa = PBXBuildFile; productRef = 2700000000000000000000A5; };
+		270000000000000000000002 = {isa = PBXBuildFile; productRef = 270000000000000000000012; };
+		270000000000000000000003 = {isa = PBXBuildFile; productRef = 270000000000000000000013; };
+		270000000000000000000004 = {isa = PBXBuildFile; productRef = 270000000000000000000014; };
+		270000000000000000000005 = {isa = PBXBuildFile; productRef = 270000000000000000000015; };
+		270000000000000000000006 = {isa = PBXBuildFile; productRef = 270000000000000000000016; };
+		270000000000000000000007 = {isa = PBXBuildFile; productRef = 270000000000000000000017; };
+		270000000000000000000041 = {isa = PBXBuildFile; productRef = 270000000000000000000051; };
+		270000000000000000000042 = {isa = PBXBuildFile; productRef = 270000000000000000000052; };
+		270000000000000000000043 = {isa = PBXBuildFile; productRef = 270000000000000000000053; };
+		270000000000000000000044 = {isa = PBXBuildFile; productRef = 270000000000000000000054; };
+		270000000000000000000045 = {isa = PBXBuildFile; productRef = 270000000000000000000055; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
-		FFAA00072F4BDA300091A567 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FFDF24552F4BDA300091A567 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FFDF245C2F4BDA300091A567;
-			remoteInfo = HUSH;
-		};
+		27000000000000000000010D = {isa = PBXContainerItemProxy; containerPortal = FFDF24552F4BDA300091A567; proxyType = 1; remoteGlobalIDString = 270000000000000000000100; remoteInfo = HushWatch; };
+		FFAA00072F4BDA300091A567 = {isa = PBXContainerItemProxy; containerPortal = FFDF24552F4BDA300091A567; proxyType = 1; remoteGlobalIDString = FFDF245C2F4BDA300091A567; remoteInfo = Hush; };
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		27000000000000000000010B = {isa = PBXCopyFilesBuildPhase; buildActionMask = 2147483647; dstPath = "$(CONTENTS_FOLDER_PATH)/Watch"; dstSubfolderSpec = 16; files = (27000000000000000000010C,); name = "Embed Watch App"; runOnlyForDeploymentPostprocessing = 0; };
+		270000000000000000000110 = {isa = PBXCopyFilesBuildPhase; buildActionMask = 2147483647; dstPath = "$(CONTENTS_FOLDER_PATH)/Watch"; dstSubfolderSpec = 16; files = (270000000000000000000111,); name = "Embed Watch App"; runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		FFAA00012F4BDA300091A567 /* HushTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HushTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FFDF245D2F4BDA300091A567 /* Hush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hush.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		270000000000000000000101 = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HushWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		270000000000000000000109 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hush/Domain/CompanionPacket.swift; sourceTree = SOURCE_ROOT; };
+		270000000000000000000062 = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HushTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		270000000000000000000081 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hush/Domain/Conversation.swift; sourceTree = SOURCE_ROOT; };
+		270000000000000000000082 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hush/Domain/HushSettings.swift; sourceTree = SOURCE_ROOT; };
+		270000000000000000000083 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hush/Domain/ModelRecord.swift; sourceTree = SOURCE_ROOT; };
+		270000000000000000000084 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hush/Domain/ModelContextLimit.swift; sourceTree = SOURCE_ROOT; };
+		270000000000000000000085 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hush/Intelligence/MLXEngine.swift; sourceTree = SOURCE_ROOT; };
+		270000000000000000000086 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hush/Intelligence/LocalTokenizer.swift; sourceTree = SOURCE_ROOT; };
+		270000000000000000000087 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hush/Intelligence/HardwareMonitor.swift; sourceTree = SOURCE_ROOT; };
+		270000000000000000000088 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hush/Storage/LibraryStore.swift; sourceTree = SOURCE_ROOT; };
+		270000000000000000000089 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hush/Models/HuggingFaceClient.swift; sourceTree = SOURCE_ROOT; };
+		27000000000000000000008A = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hush/Models/ModelInstaller.swift; sourceTree = SOURCE_ROOT; };
+		27000000000000000000008B = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hush/Design/HushStyle.swift; sourceTree = SOURCE_ROOT; };
+		FFDF245D2F4BDA300091A567 = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hush.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFAA00012F4BDA300091A567 = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HushTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		270000000000000000000031 = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HushSimulator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		FFEFD0392F4C5A2D0077C616 /* Exceptions for "Hush" folder in "Hush" target */ = {
+		FFEFD0392F4C5A2D0077C616 = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = FFDF245C2F4BDA300091A567 /* Hush */;
+			membershipExceptions = (Info.plist, Hush.entitlements,);
+			target = FFDF245C2F4BDA300091A567;
 		};
+		270000000000000000000032 = {isa = PBXFileSystemSynchronizedBuildFileExceptionSet; membershipExceptions = (Info.plist, Hush.entitlements,); target = 270000000000000000000033; };
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		FFAA00022F4BDA300091A567 /* HushTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = HushTests;
-			sourceTree = "<group>";
-		};
-		FFDF245F2F4BDA300091A567 /* Hush */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				FFEFD0392F4C5A2D0077C616 /* Exceptions for "Hush" folder in "Hush" target */,
-			);
-			path = Hush;
-			sourceTree = "<group>";
-		};
+		270000000000000000000102 = {isa = PBXFileSystemSynchronizedRootGroup; path = HushWatch; sourceTree = "<group>"; };
+		270000000000000000000063 = {isa = PBXFileSystemSynchronizedRootGroup; path = HushTV; sourceTree = "<group>"; };
+		FFDF245F2F4BDA300091A567 = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (FFEFD0392F4C5A2D0077C616,270000000000000000000032,); path = Hush; sourceTree = "<group>"; };
+		FFAA00022F4BDA300091A567 = {isa = PBXFileSystemSynchronizedRootGroup; path = HushTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		FFAA00032F4BDA300091A567 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
+		270000000000000000000107 = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		270000000000000000000068 = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (2700000000000000000000B1,2700000000000000000000B2,2700000000000000000000B3,2700000000000000000000B4,2700000000000000000000B5,2700000000000000000000B6,); runOnlyForDeploymentPostprocessing = 0; };
+		FFDF245A2F4BDA300091A567 = {
+			isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647;
+			files = (270000000000000000000002,270000000000000000000003,270000000000000000000004,270000000000000000000005,270000000000000000000006,270000000000000000000007,);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FFDF245A2F4BDA300091A567 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
+		FFAA00032F4BDA300091A567 = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		270000000000000000000034 = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (270000000000000000000041,270000000000000000000042,270000000000000000000043,270000000000000000000044,270000000000000000000045,); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FFDF24542F4BDA300091A567 = {
-			isa = PBXGroup;
-			children = (
-				FFDF245F2F4BDA300091A567 /* Hush */,
-				FFAA00022F4BDA300091A567 /* HushTests */,
-				FFDF245E2F4BDA300091A567 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		FFDF245E2F4BDA300091A567 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				FFDF245D2F4BDA300091A567 /* Hush.app */,
-				FFAA00012F4BDA300091A567 /* HushTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
+		FFDF24542F4BDA300091A567 = {isa = PBXGroup; children = (FFDF245F2F4BDA300091A567, FFAA00022F4BDA300091A567,270000000000000000000063,270000000000000000000102,270000000000000000000109,2700000000000000000000C1, FFDF245E2F4BDA300091A567,); sourceTree = "<group>"; };
+		2700000000000000000000C1 = {isa = PBXGroup; children = (270000000000000000000081,270000000000000000000082,270000000000000000000083,270000000000000000000084,270000000000000000000085,270000000000000000000086,270000000000000000000087,270000000000000000000088,270000000000000000000089,27000000000000000000008A,27000000000000000000008B,); name = "Shared TV sources"; sourceTree = "<group>"; };
+		FFDF245E2F4BDA300091A567 = {isa = PBXGroup; children = (FFDF245D2F4BDA300091A567, FFAA00012F4BDA300091A567,270000000000000000000031,270000000000000000000062,270000000000000000000101,); name = Products; sourceTree = "<group>"; };
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FFAA00062F4BDA300091A567 /* HushTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FFAA000B2F4BDA300091A567 /* Build configuration list for PBXNativeTarget "HushTests" */;
-			buildPhases = (
-				FFAA00052F4BDA300091A567 /* Sources */,
-				FFAA00032F4BDA300091A567 /* Frameworks */,
-				FFAA00042F4BDA300091A567 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FFAA00082F4BDA300091A567 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				FFAA00022F4BDA300091A567 /* HushTests */,
-			);
-			name = HushTests;
-			packageProductDependencies = (
-			);
-			productName = HUSHTests;
-			productReference = FFAA00012F4BDA300091A567 /* HushTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
+		270000000000000000000100 = {
+			isa = PBXNativeTarget; buildConfigurationList = 270000000000000000000103;
+			buildPhases = (270000000000000000000106,270000000000000000000107,270000000000000000000108,);
+			buildRules = (); dependencies = (); fileSystemSynchronizedGroups = (270000000000000000000102,);
+			name = HushWatch; productName = HushWatch; productReference = 270000000000000000000101; productType = "com.apple.product-type.application";
 		};
-		FFDF245C2F4BDA300091A567 /* Hush */ = {
+		270000000000000000000061 = {
+			isa = PBXNativeTarget; buildConfigurationList = 270000000000000000000064;
+			buildPhases = (270000000000000000000067,270000000000000000000068,270000000000000000000069,);
+			buildRules = (); dependencies = (); fileSystemSynchronizedGroups = (270000000000000000000063,);
+			name = HushTV; packageProductDependencies = (2700000000000000000000A1,2700000000000000000000A2,2700000000000000000000A3,2700000000000000000000A4,2700000000000000000000A5,2700000000000000000000A6,);
+			productName = HushTV; productReference = 270000000000000000000062; productType = "com.apple.product-type.application";
+		};
+		270000000000000000000033 = {
+			isa = PBXNativeTarget; buildConfigurationList = 270000000000000000000037;
+			buildPhases = (270000000000000000000035,270000000000000000000034,270000000000000000000036,270000000000000000000110,);
+			buildRules = (); dependencies = (27000000000000000000010F,); fileSystemSynchronizedGroups = (FFDF245F2F4BDA300091A567,);
+			name = HushSimulator;
+			packageProductDependencies = (270000000000000000000051,270000000000000000000052,270000000000000000000053,270000000000000000000054,270000000000000000000055,);
+			productName = HushSimulator; productReference = 270000000000000000000031; productType = "com.apple.product-type.application";
+		};
+		FFDF245C2F4BDA300091A567 = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FFDF24682F4BDA310091A567 /* Build configuration list for PBXNativeTarget "Hush" */;
-			buildPhases = (
-				FFDF24592F4BDA300091A567 /* Sources */,
-				FFDF245A2F4BDA300091A567 /* Frameworks */,
-				FFDF245B2F4BDA300091A567 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				FFDF245F2F4BDA300091A567 /* Hush */,
-			);
+			buildConfigurationList = FFDF24682F4BDA310091A567;
+			buildPhases = (FFDF24592F4BDA300091A567, FFDF245A2F4BDA300091A567, FFDF245B2F4BDA300091A567,27000000000000000000010B,);
+			buildRules = (); dependencies = (27000000000000000000010E,);
+			fileSystemSynchronizedGroups = (FFDF245F2F4BDA300091A567,);
 			name = Hush;
-			packageProductDependencies = (
-			);
-			productName = HUSH;
-			productReference = FFDF245D2F4BDA300091A567 /* Hush.app */;
-			productType = "com.apple.product-type.application";
+			packageProductDependencies = (270000000000000000000012,270000000000000000000013,270000000000000000000014,270000000000000000000015,270000000000000000000016,270000000000000000000017,);
+			productName = Hush; productReference = FFDF245D2F4BDA300091A567; productType = "com.apple.product-type.application";
+		};
+		FFAA00062F4BDA300091A567 = {
+			isa = PBXNativeTarget; buildConfigurationList = FFAA000B2F4BDA300091A567;
+			buildPhases = (FFAA00052F4BDA300091A567, FFAA00032F4BDA300091A567, FFAA00042F4BDA300091A567,);
+			buildRules = (); dependencies = (FFAA00082F4BDA300091A567,);
+			fileSystemSynchronizedGroups = (FFAA00022F4BDA300091A567,);
+			name = HushTests; productName = HushTests; productReference = FFAA00012F4BDA300091A567; productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		FFDF24552F4BDA300091A567 /* Project object */ = {
+		FFDF24552F4BDA300091A567 = {
 			isa = PBXProject;
-			attributes = {
-				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2620;
-				LastUpgradeCheck = 2630;
-				TargetAttributes = {
-					FFAA00062F4BDA300091A567 = {
-						CreatedOnToolsVersion = 26.2;
-						TestTargetID = FFDF245C2F4BDA300091A567;
-					};
-					FFDF245C2F4BDA300091A567 = {
-						CreatedOnToolsVersion = 26.2;
-					};
-				};
-			};
-			buildConfigurationList = FFDF24582F4BDA300091A567 /* Build configuration list for PBXProject "Hush" */;
-			developmentRegion = en;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = FFDF24542F4BDA300091A567;
-			minimizedProjectReferenceProxies = 1;
-			packageReferences = (
-			);
-			preferredProjectObjectVersion = 77;
-			productRefGroup = FFDF245E2F4BDA300091A567 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				FFAA00062F4BDA300091A567 /* HushTests */,
-				FFDF245C2F4BDA300091A567 /* Hush */,
-			);
+			attributes = {BuildIndependentTargetsInParallel = 1; LastSwiftUpdateCheck = 2700; LastUpgradeCheck = 2700; TargetAttributes = {FFDF245C2F4BDA300091A567 = {CreatedOnToolsVersion = 27.0; }; FFAA00062F4BDA300091A567 = {CreatedOnToolsVersion = 27.0; TestTargetID = FFDF245C2F4BDA300091A567; }; }; };
+			buildConfigurationList = FFDF24582F4BDA300091A567; developmentRegion = en;
+			hasScannedForEncodings = 0; knownRegions = (en, Base,);
+			mainGroup = FFDF24542F4BDA300091A567; minimizedProjectReferenceProxies = 1;
+			packageReferences = (270000000000000000000021,270000000000000000000022,270000000000000000000023,270000000000000000000024,270000000000000000000025,);
+			preferredProjectObjectVersion = 77; productRefGroup = FFDF245E2F4BDA300091A567;
+			projectDirPath = ""; projectRoot = ""; targets = (FFDF245C2F4BDA300091A567, FFAA00062F4BDA300091A567,270000000000000000000033,270000000000000000000061,270000000000000000000100,);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		FFAA00042F4BDA300091A567 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FFDF245B2F4BDA300091A567 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
+		270000000000000000000108 = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		270000000000000000000069 = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		FFDF245B2F4BDA300091A567 = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		FFAA00042F4BDA300091A567 = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		270000000000000000000036 = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		FFAA00052F4BDA300091A567 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FFDF24592F4BDA300091A567 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
+		270000000000000000000106 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (27000000000000000000010A,); runOnlyForDeploymentPostprocessing = 0; };
+		270000000000000000000067 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (270000000000000000000091,270000000000000000000092,270000000000000000000093,270000000000000000000094,270000000000000000000095,270000000000000000000096,270000000000000000000097,270000000000000000000098,270000000000000000000099,27000000000000000000009A,27000000000000000000009B,); runOnlyForDeploymentPostprocessing = 0; };
+		FFDF24592F4BDA300091A567 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		FFAA00052F4BDA300091A567 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		270000000000000000000035 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		FFAA00082F4BDA300091A567 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FFDF245C2F4BDA300091A567 /* Hush */;
-			targetProxy = FFAA00072F4BDA300091A567 /* PBXContainerItemProxy */;
-		};
+		27000000000000000000010E = {isa = PBXTargetDependency; target = 270000000000000000000100; targetProxy = 27000000000000000000010D; platformFilter = ios; };
+		27000000000000000000010F = {isa = PBXTargetDependency; target = 270000000000000000000100; targetProxy = 27000000000000000000010D; platformFilter = ios; };
+		FFAA00082F4BDA300091A567 = {isa = PBXTargetDependency; target = FFDF245C2F4BDA300091A567; targetProxy = FFAA00072F4BDA300091A567; };
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		FFAA00092F4BDA300091A567 /* Debug */ = {
+		270000000000000000000104 = {isa = XCBuildConfiguration; buildSettings = {
+			CODE_SIGN_STYLE = Automatic; DEVELOPMENT_TEAM = GH69QQ984P; CURRENT_PROJECT_VERSION = 27; MARKETING_VERSION = 2.0;
+			GENERATE_INFOPLIST_FILE = YES; INFOPLIST_KEY_CFBundleDisplayName = Hush; INFOPLIST_KEY_WKApplication = YES;
+			INFOPLIST_KEY_WKCompanionAppBundleIdentifier = org.kaizosha.HUSH; INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
+			PRODUCT_BUNDLE_IDENTIFIER = org.kaizosha.HUSH.watch; PRODUCT_NAME = "$(TARGET_NAME)";
+			SDKROOT = watchos; SUPPORTED_PLATFORMS = "watchos watchsimulator"; WATCHOS_DEPLOYMENT_TARGET = 27.0; TARGETED_DEVICE_FAMILY = 4;
+			ARCHS = "$(ARCHS_STANDARD)"; SKIP_INSTALL = YES; LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+		}; name = Debug; };
+		270000000000000000000105 = {isa = XCBuildConfiguration; buildSettings = {
+			CODE_SIGN_STYLE = Automatic; DEVELOPMENT_TEAM = GH69QQ984P; CURRENT_PROJECT_VERSION = 27; MARKETING_VERSION = 2.0;
+			GENERATE_INFOPLIST_FILE = YES; INFOPLIST_KEY_CFBundleDisplayName = Hush; INFOPLIST_KEY_WKApplication = YES;
+			INFOPLIST_KEY_WKCompanionAppBundleIdentifier = org.kaizosha.HUSH; INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
+			PRODUCT_BUNDLE_IDENTIFIER = org.kaizosha.HUSH.watch; PRODUCT_NAME = "$(TARGET_NAME)";
+			SDKROOT = watchos; SUPPORTED_PLATFORMS = "watchos watchsimulator"; WATCHOS_DEPLOYMENT_TARGET = 27.0; TARGETED_DEVICE_FAMILY = 4;
+			ARCHS = "$(ARCHS_STANDARD)"; SKIP_INSTALL = YES; LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+		}; name = Release; };
+		270000000000000000000065 = {isa = XCBuildConfiguration; buildSettings = {
+			CODE_SIGN_STYLE = Automatic; DEVELOPMENT_TEAM = GH69QQ984P; CURRENT_PROJECT_VERSION = 27; MARKETING_VERSION = 2.0;
+			GENERATE_INFOPLIST_FILE = YES; INFOPLIST_KEY_CFBundleDisplayName = Hush; INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+			PRODUCT_BUNDLE_IDENTIFIER = org.kaizosha.HUSH.tv; PRODUCT_NAME = "$(TARGET_NAME)";
+			SDKROOT = appletvos; SUPPORTED_PLATFORMS = "appletvos appletvsimulator"; TVOS_DEPLOYMENT_TARGET = 27.0; TARGETED_DEVICE_FAMILY = 3;
+			LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+		}; name = Debug; };
+		270000000000000000000066 = {isa = XCBuildConfiguration; buildSettings = {
+			CODE_SIGN_STYLE = Automatic; DEVELOPMENT_TEAM = GH69QQ984P; CURRENT_PROJECT_VERSION = 27; MARKETING_VERSION = 2.0;
+			GENERATE_INFOPLIST_FILE = YES; INFOPLIST_KEY_CFBundleDisplayName = Hush; INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+			PRODUCT_BUNDLE_IDENTIFIER = org.kaizosha.HUSH.tv; PRODUCT_NAME = "$(TARGET_NAME)";
+			SDKROOT = appletvos; SUPPORTED_PLATFORMS = "appletvos appletvsimulator"; TVOS_DEPLOYMENT_TARGET = 27.0; TARGETED_DEVICE_FAMILY = 3;
+			LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+		}; name = Release; };
+		270000000000000000000038 = {isa = XCBuildConfiguration; buildSettings = {
+			ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+			CURRENT_PROJECT_VERSION = 27; MARKETING_VERSION = 2.0; GENERATE_INFOPLIST_FILE = YES; INFOPLIST_FILE = Hush/Info.plist;
+			INFOPLIST_KEY_CFBundleDisplayName = Hush; INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES; INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+			PRODUCT_BUNDLE_IDENTIFIER = org.kaizosha.HUSH; PRODUCT_NAME = "$(TARGET_NAME)";
+			SDKROOT = iphonesimulator; SUPPORTED_PLATFORMS = "iphonesimulator xrsimulator"; TARGETED_DEVICE_FAMILY = "1,2,7";
+			SUPPORTS_MACCATALYST = NO; LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+		}; name = Debug; };
+		270000000000000000000039 = {isa = XCBuildConfiguration; buildSettings = {
+			ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+			CURRENT_PROJECT_VERSION = 27; MARKETING_VERSION = 2.0; GENERATE_INFOPLIST_FILE = YES; INFOPLIST_FILE = Hush/Info.plist;
+			INFOPLIST_KEY_CFBundleDisplayName = Hush; INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES; INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+			PRODUCT_BUNDLE_IDENTIFIER = org.kaizosha.HUSH; PRODUCT_NAME = "$(TARGET_NAME)";
+			SDKROOT = iphonesimulator; SUPPORTED_PLATFORMS = "iphonesimulator xrsimulator"; TARGETED_DEVICE_FAMILY = "1,2,7";
+			SUPPORTS_MACCATALYST = NO; LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+		}; name = Release; };
+		FFDF24662F4BDA310091A567 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = GH69QQ984P;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.kaizosha.HUSHTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hush.app/Contents/MacOS/Hush";
-				TEST_TARGET_NAME = HUSH;
-			};
-			name = Debug;
+				CLANG_ENABLE_MODULES = YES; CLANG_ENABLE_OBJC_ARC = YES; CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				GCC_C_LANGUAGE_STANDARD = gnu17; GCC_OPTIMIZATION_LEVEL = 0;
+				DEBUG_INFORMATION_FORMAT = dwarf; ENABLE_TESTABILITY = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)"; SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0; SWIFT_STRICT_CONCURRENCY = complete;
+				ARCHS = arm64; ONLY_ACTIVE_ARCH = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0; IPHONEOS_DEPLOYMENT_TARGET = 27.0; XROS_DEPLOYMENT_TARGET = 27.0;
+			}; name = Debug;
 		};
-		FFAA000A2F4BDA300091A567 /* Release */ = {
+		FFDF24672F4BDA310091A567 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = GH69QQ984P;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.kaizosha.HUSHTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hush.app/Contents/MacOS/Hush";
-				TEST_TARGET_NAME = HUSH;
-			};
-			name = Release;
+				CLANG_ENABLE_MODULES = YES; CLANG_ENABLE_OBJC_ARC = YES; CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				GCC_C_LANGUAGE_STANDARD = gnu17; DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				SWIFT_COMPILATION_MODE = wholemodule; SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0; SWIFT_STRICT_CONCURRENCY = complete;
+				ARCHS = arm64;
+				MACOSX_DEPLOYMENT_TARGET = 27.0; IPHONEOS_DEPLOYMENT_TARGET = 27.0; XROS_DEPLOYMENT_TARGET = 27.0;
+			}; name = Release;
 		};
-		FFDF24662F4BDA310091A567 /* Debug */ = {
+		FFDF24692F4BDA310091A567 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = GH69QQ984P;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = Debug;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Hush/Hush.entitlements; CODE_SIGN_STYLE = Automatic; DEVELOPMENT_TEAM = GH69QQ984P;
+				CURRENT_PROJECT_VERSION = 27; MARKETING_VERSION = 2.0;
+				ENABLE_APP_SANDBOX = YES; ENABLE_HARDENED_RUNTIME = YES; ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES; INFOPLIST_FILE = Hush/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Hush; INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES; INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.kaizosha.HUSH; PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto; SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator xros xrsimulator";
+				TARGETED_DEVICE_FAMILY = "1,2,7"; SUPPORTS_MACCATALYST = NO;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES; SWIFT_EMIT_LOC_STRINGS = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../Frameworks";
+			}; name = Debug;
 		};
-		FFDF24672F4BDA310091A567 /* Release */ = {
+		FFDF246A2F4BDA310091A567 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = GH69QQ984P;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				SDKROOT = macosx;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_COMPILATION_MODE = wholemodule;
-			};
-			name = Release;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Hush/Hush.entitlements; CODE_SIGN_STYLE = Automatic; DEVELOPMENT_TEAM = GH69QQ984P;
+				CURRENT_PROJECT_VERSION = 27; MARKETING_VERSION = 2.0;
+				ENABLE_APP_SANDBOX = YES; ENABLE_HARDENED_RUNTIME = YES; ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES; INFOPLIST_FILE = Hush/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Hush; INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES; INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.kaizosha.HUSH; PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto; SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator xros xrsimulator";
+				TARGETED_DEVICE_FAMILY = "1,2,7"; SUPPORTS_MACCATALYST = NO;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES; SWIFT_EMIT_LOC_STRINGS = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../Frameworks";
+			}; name = Release;
 		};
-		FFDF24692F4BDA310091A567 /* Debug */ = {
+		FFAA00092F4BDA300091A567 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = HUSH/HUSH.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = GH69QQ984P;
-				ENABLE_APP_SANDBOX = NO;
-				ENABLE_DEBUG_DYLIB = NO;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = HUSH/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = HUSH;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.kaizosha.HUSH;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				REGISTER_APP_GROUPS = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
+				BUNDLE_LOADER = "$(TEST_HOST)"; CODE_SIGN_STYLE = Automatic; DEVELOPMENT_TEAM = GH69QQ984P;
+				GENERATE_INFOPLIST_FILE = YES; PRODUCT_BUNDLE_IDENTIFIER = org.kaizosha.HushTests; PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx; SUPPORTED_PLATFORMS = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hush.app/Contents/MacOS/Hush"; TEST_TARGET_NAME = Hush;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+			}; name = Debug;
 		};
-		FFDF246A2F4BDA310091A567 /* Release */ = {
+		FFAA000A2F4BDA300091A567 = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = HUSH/HUSH.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = GH69QQ984P;
-				ENABLE_APP_SANDBOX = NO;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = HUSH;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.kaizosha.HUSH;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				REGISTER_APP_GROUPS = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
+				BUNDLE_LOADER = "$(TEST_HOST)"; CODE_SIGN_STYLE = Automatic; DEVELOPMENT_TEAM = GH69QQ984P;
+				GENERATE_INFOPLIST_FILE = YES; PRODUCT_BUNDLE_IDENTIFIER = org.kaizosha.HushTests; PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx; SUPPORTED_PLATFORMS = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hush.app/Contents/MacOS/Hush"; TEST_TARGET_NAME = Hush;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+			}; name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FFAA000B2F4BDA300091A567 /* Build configuration list for PBXNativeTarget "HushTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FFAA00092F4BDA300091A567 /* Debug */,
-				FFAA000A2F4BDA300091A567 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FFDF24582F4BDA300091A567 /* Build configuration list for PBXProject "Hush" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FFDF24662F4BDA310091A567 /* Debug */,
-				FFDF24672F4BDA310091A567 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FFDF24682F4BDA310091A567 /* Build configuration list for PBXNativeTarget "Hush" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FFDF24692F4BDA310091A567 /* Debug */,
-				FFDF246A2F4BDA310091A567 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
+		270000000000000000000103 = {isa = XCConfigurationList; buildConfigurations = (270000000000000000000104,270000000000000000000105,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		270000000000000000000064 = {isa = XCConfigurationList; buildConfigurations = (270000000000000000000065,270000000000000000000066,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		270000000000000000000037 = {isa = XCConfigurationList; buildConfigurations = (270000000000000000000038,270000000000000000000039,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Debug; };
+		FFDF24582F4BDA300091A567 = {isa = XCConfigurationList; buildConfigurations = (FFDF24662F4BDA310091A567, FFDF24672F4BDA310091A567,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		FFDF24682F4BDA310091A567 = {isa = XCConfigurationList; buildConfigurations = (FFDF24692F4BDA310091A567, FFDF246A2F4BDA310091A567,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		FFAA000B2F4BDA300091A567 = {isa = XCConfigurationList; buildConfigurations = (FFAA00092F4BDA300091A567, FFAA000A2F4BDA300091A567,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		270000000000000000000025 = {isa = XCRemoteSwiftPackageReference; repositoryURL = "https://github.com/huggingface/swift-huggingface.git"; requirement = {kind = revision; revision = 5c608861f9712cbf71a0c420f2909f6e31bae5e1; }; };
+		270000000000000000000021 = {isa = XCRemoteSwiftPackageReference; repositoryURL = "https://github.com/ml-explore/mlx-swift-lm"; requirement = {kind = revision; revision = 37688d2cf7d3906e08c74479c9d9949ce6b81136; }; };
+		270000000000000000000022 = {isa = XCRemoteSwiftPackageReference; repositoryURL = "https://github.com/ml-explore/mlx-swift"; requirement = {kind = upToNextMinorVersion; minimumVersion = 0.31.6; }; };
+		270000000000000000000023 = {isa = XCRemoteSwiftPackageReference; repositoryURL = "https://github.com/huggingface/swift-transformers"; requirement = {kind = upToNextMajorVersion; minimumVersion = 1.1.0; }; };
+		270000000000000000000024 = {isa = XCRemoteSwiftPackageReference; repositoryURL = "https://github.com/apple/coreai-models"; requirement = {kind = revision; revision = de31ba508895c7aa3bdcc57f8837a23f13316871; }; };
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2700000000000000000000A6 = {isa = XCSwiftPackageProductDependency; package = 270000000000000000000025; productName = HuggingFace; };
+		2700000000000000000000A1 = {isa = XCSwiftPackageProductDependency; package = 270000000000000000000021; productName = MLXLLM; };
+		2700000000000000000000A2 = {isa = XCSwiftPackageProductDependency; package = 270000000000000000000021; productName = MLXVLM; };
+		2700000000000000000000A3 = {isa = XCSwiftPackageProductDependency; package = 270000000000000000000021; productName = MLXLMCommon; };
+		2700000000000000000000A4 = {isa = XCSwiftPackageProductDependency; package = 270000000000000000000022; productName = MLX; };
+		2700000000000000000000A5 = {isa = XCSwiftPackageProductDependency; package = 270000000000000000000023; productName = Tokenizers; };
+		270000000000000000000051 = {isa = XCSwiftPackageProductDependency; package = 270000000000000000000021; productName = MLXLLM; };
+		270000000000000000000052 = {isa = XCSwiftPackageProductDependency; package = 270000000000000000000021; productName = MLXVLM; };
+		270000000000000000000053 = {isa = XCSwiftPackageProductDependency; package = 270000000000000000000021; productName = MLXLMCommon; };
+		270000000000000000000054 = {isa = XCSwiftPackageProductDependency; package = 270000000000000000000022; productName = MLX; };
+		270000000000000000000055 = {isa = XCSwiftPackageProductDependency; package = 270000000000000000000023; productName = Tokenizers; };
+		270000000000000000000012 = {isa = XCSwiftPackageProductDependency; package = 270000000000000000000021; productName = MLXLLM; };
+		270000000000000000000013 = {isa = XCSwiftPackageProductDependency; package = 270000000000000000000021; productName = MLXVLM; };
+		270000000000000000000014 = {isa = XCSwiftPackageProductDependency; package = 270000000000000000000021; productName = MLXLMCommon; };
+		270000000000000000000015 = {isa = XCSwiftPackageProductDependency; package = 270000000000000000000022; productName = MLX; };
+		270000000000000000000016 = {isa = XCSwiftPackageProductDependency; package = 270000000000000000000023; productName = Tokenizers; };
+		270000000000000000000017 = {isa = XCSwiftPackageProductDependency; package = 270000000000000000000024; productName = CoreAILM; };
+/* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = FFDF24552F4BDA300091A567 /* Project object */;
+	rootObject = FFDF24552F4BDA300091A567;
 }

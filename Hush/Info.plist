@@ -18,21 +18,9 @@
   <string>$(MARKETING_VERSION)</string>
   <key>CFBundleVersion</key>
   <string>$(CURRENT_PROJECT_VERSION)</string>
-  <key>LSMinimumSystemVersion</key>
-  <string>$(MACOSX_DEPLOYMENT_TARGET)</string>
-  <key>LSUIElement</key>
-  <false/>
-  <key>NSCameraUsageDescription</key>
-  <string>HUSH uses the camera when camera-based input is enabled.</string>
   <key>NSMicrophoneUsageDescription</key>
-  <string>HUSH uses the microphone for live transcription.</string>
-  <key>NSPhotoLibraryUsageDescription</key>
-  <string>HUSH uses your photo library when you choose images from Photos.</string>
+  <string>Transcribe your voice on this device when you press the microphone.</string>
   <key>NSSpeechRecognitionUsageDescription</key>
-  <string>HUSH uses speech recognition to transcribe live audio.</string>
-  <key>NSMainStoryboardFile</key>
-  <string></string>
-  <key>NSPrincipalClass</key>
-  <string>NSApplication</string>
+  <string>Transcribe audio locally. Audio is not sent to a cloud provider.</string>
 </dict>
 </plist>
